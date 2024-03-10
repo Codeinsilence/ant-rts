@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://djqv4l1mcymid"]
+
+[ext_resource type="ArrayMesh" uid="uid://b0lpm5e2vcbwe" path="res://assets/models/smolant.obj" id="1_afgs7"]
+[ext_resource type="Texture2D" uid="uid://n37wui5vax5n" path="res://assets/models/ant.jpg" id="2_adfis"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhr1b"]
+albedo_texture = ExtResource("2_adfis")
+roughness = 0.84
+roughness_texture_channel = 4
+clearcoat_enabled = true
+clearcoat = 0.24
+clearcoat_roughness = 1.0
+
+[node name="dbg_ant" type="MeshInstance3D"]
+mesh = ExtResource("1_afgs7")
+surface_material_override/0 = SubResource("StandardMaterial3D_lhr1b")

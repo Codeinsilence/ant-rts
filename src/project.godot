@@ -13,7 +13,7 @@ config_version=5
 config/name="March of the Mandibles"
 run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://mandiblelogo.png"
 
 [input]
 
@@ -36,4 +36,15 @@ right_arrow={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194321,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
+}
+
+[shader_globals]
+
+heightmap={
+"type": "sampler2D",
+"value": "res://assets/terrain_heightmap_smoothed.png"
+}
+normalmap={
+"type": "sampler2D",
+"value": "res://assets/terrain_normalmap_smoothed.png"
 }

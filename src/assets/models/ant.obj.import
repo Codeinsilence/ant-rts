@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://btnc8g37680ev"
+path="res://.godot/imported/ant.obj-9934a8d60b0fe484e53f077b70b89228.mesh"
+
+[deps]
+
+files=["res://.godot/imported/ant.obj-9934a8d60b0fe484e53f077b70b89228.mesh"]
+
+source_file="res://assets/models/ant.obj"
+dest_files=["res://.godot/imported/ant.obj-9934a8d60b0fe484e53f077b70b89228.mesh", "res://.godot/imported/ant.obj-9934a8d60b0fe484e53f077b70b89228.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
