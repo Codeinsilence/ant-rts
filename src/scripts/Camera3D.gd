@@ -2,7 +2,9 @@ extends Camera3D
 
 var PIVOT: Node3D;
 
-var speed: float = 4.0;
+@export var speed: float = 4.0;
+@export var max_size = 100;
+@export var min_size = 10;
 
 var rot_quat: Quaternion;
 
@@ -19,3 +21,7 @@ func _process(delta):
 		PIVOT.position +=  rot_quat * Vector3(delta*-speed,0,0);
 	if(Input.is_action_pressed("right_arrow")):
 		PIVOT.position +=  rot_quat * Vector3(delta*speed,0,0);
+	if(Input.is_action_just_released("zoom_in")):
+		size = max(size - 5, min_size);
+	if(Input.is_action_just_released("zoom_out")):
+		size = min(size + 5, max_size)

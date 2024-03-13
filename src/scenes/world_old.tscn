@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1tf8f1u1hchs"]
+
+[ext_resource type="Script" path="res://scripts/Camera3D.gd" id="1_j4m15"]
+[ext_resource type="PackedScene" uid="uid://djqv4l1mcymid" path="res://scenes/dbg_ant.tscn" id="2_38se1"]
+[ext_resource type="Shader" path="res://shaders/debug.gdshader" id="3_u2th4"]
+
+[sub_resource type="Environment" id="Environment_2w2sc"]
+ssao_sharpness = 0.0
+sdfgi_use_occlusion = true
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_cxxsk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hkgc1"]
+render_priority = 0
+shader = ExtResource("3_u2th4")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cevwt"]
+material = SubResource("ShaderMaterial_hkgc1")
+size = Vector2(30, 30)
+subdivide_width = 128
+subdivide_depth = 128
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0psiy"]
+data = PackedVector3Array(-10, 0.5, 10, 10, 0.5, 10, -10, -0.5, 10, 10, 0.5, 10, 10, -0.5, 10, -10, -0.5, 10, 10, 0.5, -10, -10, 0.5, -10, 10, -0.5, -10, -10, 0.5, -10, -10, -0.5, -10, 10, -0.5, -10, 10, 0.5, 10, 10, 0.5, -10, 10, -0.5, 10, 10, 0.5, -10, 10, -0.5, -10, 10, -0.5, 10, -10, 0.5, -10, -10, 0.5, 10, -10, -0.5, -10, -10, 0.5, 10, -10, -0.5, 10, -10, -0.5, -10, 10, 0.5, 10, -10, 0.5, 10, 10, 0.5, -10, -10, 0.5, 10, -10, 0.5, -10, 10, 0.5, -10, -10, -0.5, 10, 10, -0.5, 10, -10, -0.5, -10, 10, -0.5, 10, 10, -0.5, -10, -10, -0.5, -10)
+
+[node name="World" type="Node3D"]
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -10, 10, 10)
+visible = false
+environment = SubResource("Environment_2w2sc")
+attributes = SubResource("CameraAttributesPhysical_cxxsk")
+projection = 1
+current = true
+size = 10.0
+script = ExtResource("1_j4m15")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.00570342, 0.422592, 0.906302, 0.00474546, -0.906295, 0.422618, 0.999972, 0.00671119, 0.00316359, -9.22902, 12.1911, -8.60274)
+shadow_enabled = true
+shadow_blur = 2.0
+directional_shadow_split_1 = 0.05
+directional_shadow_max_distance = 843.6
+directional_shadow_pancake_size = 1.1
+
+[node name="dbg_ant" parent="." instance=ExtResource("2_38se1")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.294, 3.8, -3.798)
+cast_shadow = 2
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+rotation_edit_mode = 1
+mesh = SubResource("PlaneMesh_cevwt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("ConcavePolygonShape3D_0psiy")
