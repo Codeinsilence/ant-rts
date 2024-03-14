@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdcix7btpgesh"]
+[gd_scene load_steps=13 format=3 uid="uid://bdcix7btpgesh"]
 
 [ext_resource type="Script" path="res://scripts/Camera3D.gd" id="1_3prb5"]
 [ext_resource type="Script" path="res://NavigationRegion3D.gd" id="2_p7r81"]
 [ext_resource type="Script" path="res://terrain_generation.gd" id="3_b73su"]
 [ext_resource type="Script" path="res://CollisionShape3D.gd" id="4_dfixu"]
 [ext_resource type="PackedScene" uid="uid://djqv4l1mcymid" path="res://scenes/dbg_ant.tscn" id="4_v2512"]
+[ext_resource type="PackedScene" uid="uid://ba341xr06ovjq" path="res://scenes/collision_ant.tscn" id="6_4es7m"]
+[ext_resource type="Script" path="res://scripts/Worker.gd" id="7_l7rlg"]
 
 [sub_resource type="Environment" id="Environment_7pos8"]
 ssao_sharpness = 0.0
@@ -61,3 +63,7 @@ script = ExtResource("4_dfixu")
 [node name="dbg_ant" parent="." instance=ExtResource("4_v2512")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.294, 3.8, -3.798)
 cast_shadow = 2
+
+[node name="collision_ant" parent="." instance=ExtResource("6_4es7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.59114, 0)
+script = ExtResource("7_l7rlg")

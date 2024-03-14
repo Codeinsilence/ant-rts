@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://pexxqcdb1ep3"
+path="res://.godot/imported/BushObj.obj-5a91f498ed6285947ef4e030e5b2901e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/BushObj.obj-5a91f498ed6285947ef4e030e5b2901e.mesh"]
+
+source_file="res://assets/models/BushObj.obj"
+dest_files=["res://.godot/imported/BushObj.obj-5a91f498ed6285947ef4e030e5b2901e.mesh", "res://.godot/imported/BushObj.obj-5a91f498ed6285947ef4e030e5b2901e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

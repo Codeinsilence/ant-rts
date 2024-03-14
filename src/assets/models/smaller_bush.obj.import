@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dw6qc0d7r0egr"
+path="res://.godot/imported/smaller_bush.obj-c822817a43c31601bf08eb652a4377ca.mesh"
+
+[deps]
+
+files=["res://.godot/imported/smaller_bush.obj-c822817a43c31601bf08eb652a4377ca.mesh"]
+
+source_file="res://assets/models/smaller_bush.obj"
+dest_files=["res://.godot/imported/smaller_bush.obj-c822817a43c31601bf08eb652a4377ca.mesh", "res://.godot/imported/smaller_bush.obj-c822817a43c31601bf08eb652a4377ca.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
