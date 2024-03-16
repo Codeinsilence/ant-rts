@@ -2,10 +2,14 @@ extends MeshInstance3D
 
 var mdt = MeshDataTool.new()
 var heightmap = null
-var size = 0
+var size = 256
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# generate_mesh()
+	pass;
+	
+func generate_mesh():
 	# Create array of arrays
 	var arrays = []
 	arrays.resize(Mesh.ARRAY_MAX)
@@ -121,7 +125,16 @@ func _ready():
 	mesh.clear_surfaces()
 	mdt.commit_to_surface(mesh)
 	
+	# Save the mesh
 	ResourceSaver.save(mesh, "res://assets/models/terrain.tres")
+	
+	# Create the collision shape
+	var coll_shape = HeightMapShape3D.new()
+	coll_shape.map_width = size
+	coll_shape.map_depth = size
+	coll_shape.map_data = heightmap
+	
+	ResourceSaver.save(coll_shape, "res://assets/models/terrain_heightmap.tres")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
