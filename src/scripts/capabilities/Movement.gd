@@ -19,7 +19,7 @@ func _process(delta):
 	
 func _set_destination(loc, dest):
 	location = loc;
-	destination = dest;
+	destination = dest + Vector3(0.0, 0.05, 0.0);
 	tangent = destination - location;
 	
 func _move(t) -> Array:

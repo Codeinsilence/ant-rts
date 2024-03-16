@@ -10,6 +10,8 @@ func _ready():
 	health = 100.0;
 	location = self.global_position;
 	move = Movement.new();
+	
+	$SelectionRing.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,9 +28,11 @@ func set_moving(moving_bool):
 
 func add_to_selected_units():
 	self.add_to_group("selected_units");
+	$SelectionRing.show()
 
 func remove_from_selected_units():
 	self.remove_from_group("selected_units");
+	$SelectionRing.hide()
 
 # Code taken from A3
 func _move(delta):
