@@ -10,9 +10,9 @@ func _ready():
 	health = 100.0;
 	location = self.global_position;
 	move = Movement.new();
-	
 	$SelectionRing.hide()
-
+	
+	super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
