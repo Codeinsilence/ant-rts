@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Camera3D.gd" id="1_3prb5"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gq715"]
 [ext_resource type="Script" path="res://scripts/SelectionBox.gd" id="2_58o75"]
-[ext_resource type="ArrayMesh" uid="uid://dgjm3h15ediah" path="res://assets/models/terrain.tres" id="3_aq7lx"]
+[ext_resource type="ArrayMesh" uid="uid://dgjm3h15ediah" path="res://assets/models/terrain_old.tres" id="3_aq7lx"]
 [ext_resource type="Script" path="res://scripts/terrain_generation.gd" id="3_b73su"]
 [ext_resource type="Texture2D" uid="uid://cbnkj5k0jh2f7" path="res://assets/dirt_texture.png" id="4_2iqta"]
 [ext_resource type="Script" path="res://scripts/TerrainBody.gd" id="4_bacyx"]

@@ -102,5 +102,5 @@ func _process(delta):
 
 
 func _on_leaf_collected():
-	leaves = leaves + 1
-	print("Player leaves: " + str(leaves))
+	foliage = foliage + 1
+	print("Player foliage: " + str(foliage))
