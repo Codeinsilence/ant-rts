@@ -74,10 +74,16 @@ func right_selection():
 	var result = mouse_selection()
 	#note: ant only moves if result has valid position
 	if(result and get_tree().has_group("selected_units")):
-		for member in get_tree().get_nodes_in_group("selected_units"):
-			if member.is_in_group("player"):
-				member.set_destination(result.position)
-				member.set_moving(true)
+		if(result.collider.has_method("harvest_self")):
+			for member in get_tree().get_nodes_in_group("selected_units"):
+				if member.is_in_group("player"):
+					member.collect_resource(result.collider)
+					member.set_moving(true)
+		else:
+			for member in get_tree().get_nodes_in_group("selected_units"):
+				if member.is_in_group("player"):
+					member.set_destination(result.position)
+					member.set_moving(true)
 		#get_tree().call_group("selected_units", "set_destination", result.position);
 		#get_tree().call_group("selected_units", "set_moving", true);
 

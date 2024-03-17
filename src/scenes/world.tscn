@@ -1,9 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bdcix7btpgesh"]
+[gd_scene load_steps=18 format=3 uid="uid://bdcix7btpgesh"]
 
 [ext_resource type="Script" path="res://scripts/Camera3D.gd" id="1_3prb5"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gq715"]
 [ext_resource type="Script" path="res://scripts/SelectionBox.gd" id="2_58o75"]
-[ext_resource type="ArrayMesh" uid="uid://bhjj78y2c0nhj" path="res://assets/models/terrain.tres" id="3_aq7lx"]
+[ext_resource type="ArrayMesh" uid="uid://dgjm3h15ediah" path="res://assets/models/terrain.tres" id="3_aq7lx"]
 [ext_resource type="Script" path="res://scripts/terrain_generation.gd" id="3_b73su"]
 [ext_resource type="Texture2D" uid="uid://cbnkj5k0jh2f7" path="res://assets/dirt_texture.png" id="4_2iqta"]
 [ext_resource type="Script" path="res://scripts/TerrainBody.gd" id="4_bacyx"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ba341xr06ovjq" path="res://scenes/collision_ant.tscn" id="6_4es7m"]
 [ext_resource type="Script" path="res://scripts/TerrainCollision.gd" id="7_npo62"]
 [ext_resource type="Script" path="res://scripts/Colony.gd" id="9_l2lnn"]
+[ext_resource type="PackedScene" uid="uid://dajaa1lek7ulx" path="res://scenes/leaf.tscn" id="12_hnwa2"]
 
 [sub_resource type="Environment" id="Environment_7pos8"]
 ssao_sharpness = 0.0
@@ -100,3 +101,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111, 16, 111)
 script = ExtResource("9_l2lnn")
 team = "enemy"
 team_color = Color(1, 0.278431, 0.290196, 1)
+
+[node name="leaf" parent="." instance=ExtResource("12_hnwa2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.60812, 10.6585, 17.0037)
+
+[connection signal="leafCollected" from="leaf" to="PlayerColony" method="_on_leaf_collected"]

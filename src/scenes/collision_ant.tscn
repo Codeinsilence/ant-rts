@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ba341xr06ovjq"]
+[gd_scene load_steps=10 format=3 uid="uid://ba341xr06ovjq"]
 
 [ext_resource type="Script" path="res://scripts/Worker.gd" id="1_6sk5o"]
 [ext_resource type="ArrayMesh" uid="uid://b0lpm5e2vcbwe" path="res://assets/models/smolant.obj" id="1_tkbmg"]
 [ext_resource type="Texture2D" uid="uid://n37wui5vax5n" path="res://assets/models/ant.jpg" id="2_u8inh"]
 [ext_resource type="Script" path="res://scripts/capabilities/Movement.gd" id="4_8wk4q"]
+[ext_resource type="Script" path="res://scripts/capabilities/Carrying.gd" id="5_oi45t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26bhb"]
 albedo_texture = ExtResource("2_u8inh")
@@ -54,5 +55,8 @@ neighbor_distance = 10.0
 [node name="Movement" type="Node" parent="."]
 script = ExtResource("4_8wk4q")
 speed = 5.0
+
+[node name="Carrying" type="Node" parent="."]
+script = ExtResource("5_oi45t")
 
 [connection signal="velocity_computed" from="NavAgent" to="Movement" method="_on_velocity_computed"]
