@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ducsm1tq1ghrk"
+path="res://.godot/imported/berry.obj-6b7e3a414b56e479cddb1f3f40daf4fa.mesh"
+
+[deps]
+
+files=["res://.godot/imported/berry.obj-6b7e3a414b56e479cddb1f3f40daf4fa.mesh"]
+
+source_file="res://assets/models/berry.obj"
+dest_files=["res://.godot/imported/berry.obj-6b7e3a414b56e479cddb1f3f40daf4fa.mesh", "res://.godot/imported/berry.obj-6b7e3a414b56e479cddb1f3f40daf4fa.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
