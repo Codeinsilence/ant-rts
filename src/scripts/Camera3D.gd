@@ -62,13 +62,12 @@ func mouse_selection():
 		
 func left_selection():
 	var result = mouse_selection()
+	# If not holding shift, clear out selected group first
+	if not Input.is_action_pressed("shift"):
+		for member in get_tree().get_nodes_in_group("selected_units"):
+			member.remove_from_selected_units()
 	if(result and result.collider.has_method("add_to_selected_units")):
 		result.collider.add_to_selected_units();
-		print("Added a unit to selected units");
-	else:
-		if(get_tree().has_group("selected_units")):
-			get_tree().call_group("selected_units", "remove_from_selected_units");
-			print("Emptied out selected units");
 
 func right_selection():
 	var result = mouse_selection()
@@ -92,13 +91,12 @@ func box_selection(corner1, corner2):
 	var top_left_corner = Vector2(min(corner1.x, corner2.x), min(corner1.y, corner2.y))
 	var dimensions = Vector2(abs(corner1.x - corner2.x), abs(corner1.y - corner2.y))
 	var box = Rect2(top_left_corner, dimensions)
-	print(box)
 	# Check what's in the box
 	for unit in get_tree().get_nodes_in_group("selectable"):
 		if box.has_point(unproject_position(unit.global_transform.origin)):
-			print("Unit added to selected group")
 			unit.add_to_selected_units()
 		else:
-			unit.remove_from_selected_units()
+			if not Input.is_action_pressed("shift"):
+				unit.remove_from_selected_units()
 	
 	

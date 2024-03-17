@@ -1,4 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbifri1hqur2l"]
+[gd_scene load_steps=7 format=3 uid="uid://dbifri1hqur2l"]
+
+[ext_resource type="Script" path="res://scripts/Palace.gd" id="1_bx2lr"]
+[ext_resource type="Script" path="res://scripts/capabilities/Spawning.gd" id="2_q5l4b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ykwym"]
 size = Vector3(3, 1.5, 3)
@@ -10,7 +13,8 @@ size = Vector3(3, 1.5, 3)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_mxasd"]
 
-[node name="Palace" type="StaticBody3D"]
+[node name="Palace" type="CharacterBody3D"]
+script = ExtResource("1_bx2lr")
 
 [node name="BaseColl" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
@@ -29,3 +33,6 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.5, 0.5)
 mesh = SubResource("CylinderMesh_mxasd")
 skeleton = NodePath("../..")
+
+[node name="Spawning" type="Node" parent="."]
+script = ExtResource("2_q5l4b")

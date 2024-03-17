@@ -3,7 +3,7 @@ extends Node
 class_name Movement
 
 #var object : Node3D
-var nav : NavigationAgent3D # initialize in _ready()
+@onready var nav : NavigationAgent3D = $"../NavAgent"
 var location : Vector3
 var destination: Vector3
 var tangent : Vector3
@@ -11,8 +11,9 @@ var tangent : Vector3
 
 func look_at(target : Vector3):
 	var parent = get_parent()
-	var dir : Vector3 = target - parent.position
-	parent.look_at(parent.position + dir)
+	if target.is_equal_approx(parent.position):
+		return # Stop the screaming
+	parent.look_at(target)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,11 +28,11 @@ func _physics_process(delta):
 	# Note: Only *attempts* to move on this velocity. Actual movement on _on_veclocity_computed()
 	nav.velocity = $"../".position.direction_to(nav.get_next_path_position()) * speed
 
-func _set_destination(loc, dest):
+func _set_destination(loc, dest:Vector3):
 	location = loc;
 	destination = dest;
 	tangent = destination - location;
-	nav.target_position = dest
+	nav.set_target_position(dest)
 	
 func _on_velocity_computed(safe_velocity : Vector3) -> void:
 	if nav.is_navigation_finished():
