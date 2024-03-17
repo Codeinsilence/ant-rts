@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bolbxwslsuvpi"]
+
+[ext_resource type="ArrayMesh" uid="uid://ducsm1tq1ghrk" path="res://assets/models/berry.obj" id="1_52qh1"]
+
+[node name="berry" type="MeshInstance3D"]
+mesh = ExtResource("1_52qh1")
