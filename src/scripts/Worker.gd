@@ -1,6 +1,7 @@
 class_name Worker extends Unit
 
 var move : Movement
+var carry : Carrying
 var step = 0.01
 var t = 0.0
 var moving = false
@@ -10,6 +11,7 @@ func _ready():
 	health = 100.0;
 	location = self.global_position;
 	move = $Movement
+	carry = $Carrying
 	$SelectionRing.hide()
 	
 	super._ready()
@@ -34,6 +36,10 @@ func add_to_selected_units():
 func remove_from_selected_units():
 	self.remove_from_group("selected_units");
 	$SelectionRing.hide()
+
+func collect_resource(resource):
+	set_destination(resource.global_position);
+	$Carrying._set_resource_target(resource)
 
 # Code taken from A3
 #func _move(delta):
