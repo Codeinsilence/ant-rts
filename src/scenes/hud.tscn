@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhgtk4r4286b8"]
+[gd_scene load_steps=6 format=3 uid="uid://dhhfw2mybla5l"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_cwn8g"]
 [ext_resource type="Theme" uid="uid://drrq3u28ywljf" path="res://themes/infoPanel.tres" id="2_l1wnt"]
 [ext_resource type="Theme" uid="uid://cgo8x8uw2m2na" path="res://themes/hud.tres" id="2_lyc21"]
-[ext_resource type="Texture2D" uid="uid://cbqeycg4ajl51" path="res://assets/unknownPortrait.png" id="3_nyiol"]
+[ext_resource type="Texture2D" uid="uid://b5y2ph1evm5vt" path="res://assets/unknownPortrait.png" id="3_nyiol"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqf4j"]
+bg_color = Color(0.486275, 0.231373, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
 
 [node name="hud" type="Control"]
 layout_mode = 3
@@ -21,6 +30,7 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vqf4j")
 
 [node name="GridContainer" type="GridContainer" parent="StatusBar"]
 layout_mode = 2
@@ -36,7 +46,8 @@ layout_mode = 2
 [node name="Label" type="RichTextLabel" parent="StatusBar/GridContainer/Food/HBoxContainer"]
 clip_contents = false
 layout_mode = 2
-text = "Food:"
+bbcode_enabled = true
+text = "[b]Food"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -59,7 +70,8 @@ layout_mode = 2
 [node name="Label" type="RichTextLabel" parent="StatusBar/GridContainer/Protein/HBoxContainer"]
 clip_contents = false
 layout_mode = 2
-text = "Protein:"
+bbcode_enabled = true
+text = "[b]Protein"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -82,7 +94,8 @@ layout_mode = 2
 [node name="Label" type="RichTextLabel" parent="StatusBar/GridContainer/Foliage/HBoxContainer"]
 clip_contents = false
 layout_mode = 2
-text = "Foliage:"
+bbcode_enabled = true
+text = "[b]Foliage"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
