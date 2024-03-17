@@ -76,8 +76,13 @@ func right_selection():
 	#print(result)
 	#note: ant only moves if result has valid position
 	if(result and get_tree().has_group("selected_units")):
-		get_tree().call_group("selected_units", "set_destination", result.position);
-		get_tree().call_group("selected_units", "set_moving", true);
+		var selected_group = get_tree().get_nodes_in_group("selected_units")
+		for member in get_tree().get_nodes_in_group("selected_units"):
+			if member.is_in_group("player"):
+				member.set_destination(result.position)
+				member.set_moving(true)
+		#get_tree().call_group("selected_units", "set_destination", result.position);
+		#get_tree().call_group("selected_units", "set_moving", true);
 
 func box_selection(corner1, corner2):
 	# Define the box

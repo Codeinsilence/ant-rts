@@ -6,7 +6,7 @@ var size = 256
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# generate_mesh()
+	# generate_mesh() # uncomment to regenerate terrain mesh + collision shape
 	pass;
 	
 func generate_mesh():
@@ -39,7 +39,7 @@ func generate_mesh():
 			# heightmap.push_back(h)
 			# Zero normals to start, will fix them later
 			norms.append(Vector3(0.0, 0.0, 0.0))
-			uvs.append(Vector2(float(i) / size, float(j) / size))
+			uvs.append(Vector2(float(i) * 10.0 / float(size), float(j) * 10.0 / float(size)))
 			
 	# Run multiple smoothing passes
 	var num_passes = 5
@@ -127,6 +127,7 @@ func generate_mesh():
 	
 	# Save the mesh
 	ResourceSaver.save(mesh, "res://assets/models/terrain.tres")
+	print("Terrain mesh generated and saved!")
 	
 	# Create the collision shape
 	var coll_shape = HeightMapShape3D.new()
@@ -135,6 +136,8 @@ func generate_mesh():
 	coll_shape.map_data = heightmap
 	
 	ResourceSaver.save(coll_shape, "res://assets/models/terrain_heightmap.tres")
+	print("Terrain heightmap collision shape generated and saved!")
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

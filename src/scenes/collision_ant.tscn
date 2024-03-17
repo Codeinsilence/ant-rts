@@ -15,10 +15,12 @@ clearcoat_roughness = 1.0
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_an6og"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvaca"]
+resource_local_to_scene = true
 transparency = 1
-albedo_color = Color(0.203922, 0.917647, 0.188235, 0.647059)
+albedo_color = Color(0.588235, 0.588235, 0.588235, 0.647059)
 
 [sub_resource type="TorusMesh" id="TorusMesh_vrex7"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_pvaca")
 inner_radius = 0.35
 outer_radius = 0.45
@@ -38,5 +40,5 @@ transform = Transform3D(-2.40413e-08, -0.55, 0, 0.55, -2.40413e-08, 0, 0, 0, 0.5
 shape = SubResource("CapsuleShape3D_an6og")
 
 [node name="SelectionRing" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.07, 0)
 mesh = SubResource("TorusMesh_vrex7")

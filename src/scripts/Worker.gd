@@ -25,6 +25,9 @@ func set_destination(target):
 
 func set_moving(moving_bool):
 	moving = moving_bool
+	
+func set_selectionring_color(col : Color):
+	$SelectionRing.mesh.material.albedo_color = col
 
 func add_to_selected_units():
 	self.add_to_group("selected_units");
