@@ -104,3 +104,7 @@ func _process(delta):
 func _on_leaf_collected():
 	foliage = foliage + 1
 	print("Player foliage: " + str(foliage))
+
+func _on_food_collected():
+	food = food + 1
+	print("Player food: " + str(food))

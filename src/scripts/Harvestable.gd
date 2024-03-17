@@ -5,7 +5,7 @@ var location: Vector3
 
 signal leafCollected
 #signal proteinCollected
-#signal foodCollected
+signal foodCollected
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,3 +19,5 @@ func harvest_self():
 	self.queue_free()
 	if(type == "leaf"):
 		emit_signal("leafCollected")
+	if(type == "Food"):
+		emit_signal("foodCollected")
