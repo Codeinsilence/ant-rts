@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bdcix7btpgesh"]
+[gd_scene load_steps=17 format=3 uid="uid://bdcix7btpgesh"]
 
 [ext_resource type="Script" path="res://scripts/Camera3D.gd" id="1_3prb5"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gq715"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://scripts/terrain_generation.gd" id="3_b73su"]
 [ext_resource type="Texture2D" uid="uid://cbnkj5k0jh2f7" path="res://assets/dirt_texture.png" id="4_2iqta"]
 [ext_resource type="Script" path="res://scripts/TerrainBody.gd" id="4_bacyx"]
+[ext_resource type="PackedScene" uid="uid://djqv4l1mcymid" path="res://scenes/dbg_ant.tscn" id="4_v2512"]
+[ext_resource type="PackedScene" uid="uid://ba341xr06ovjq" path="res://scenes/collision_ant.tscn" id="6_4es7m"]
 [ext_resource type="Script" path="res://scripts/TerrainCollision.gd" id="7_npo62"]
 [ext_resource type="Script" path="res://scripts/Colony.gd" id="9_l2lnn"]
 
@@ -63,6 +65,10 @@ directional_shadow_split_1 = 0.05
 directional_shadow_max_distance = 843.6
 directional_shadow_pancake_size = 1.1
 
+[node name="dbg_ant" parent="." instance=ExtResource("4_v2512")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.294, 3.8, -3.798)
+cast_shadow = 2
+
 [node name="NavRegion" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_0rpok")
 
@@ -79,6 +85,9 @@ script = ExtResource("3_b73su")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127.5, 0, 127.5)
 shape = SubResource("HeightMapShape3D_7i73e")
 script = ExtResource("7_npo62")
+
+[node name="collision_ant" parent="." instance=ExtResource("6_4es7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66472, 9.8312, 1.63857)
 
 [node name="PlayerColony" type="Node3D" parent="." groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 16, 16)

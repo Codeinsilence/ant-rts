@@ -4,7 +4,9 @@ class_name Palace extends Unit
 func _ready():
 	health = 100.0
 
-
+func _physics_process(delta):
+	pass
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
