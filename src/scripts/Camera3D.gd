@@ -62,7 +62,6 @@ func mouse_selection():
 		
 func left_selection():
 	var result = mouse_selection()
-	#print(result)
 	if(result and result.collider.has_method("add_to_selected_units")):
 		result.collider.add_to_selected_units();
 		print("Added a unit to selected units");
@@ -73,10 +72,8 @@ func left_selection():
 
 func right_selection():
 	var result = mouse_selection()
-	#print(result)
 	#note: ant only moves if result has valid position
 	if(result and get_tree().has_group("selected_units")):
-		var selected_group = get_tree().get_nodes_in_group("selected_units")
 		for member in get_tree().get_nodes_in_group("selected_units"):
 			if member.is_in_group("player"):
 				member.set_destination(result.position)

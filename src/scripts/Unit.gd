@@ -1,4 +1,4 @@
-class_name Unit extends Node3D
+class_name Unit extends CharacterBody3D
 
 # Adding properties
 @export var health : float

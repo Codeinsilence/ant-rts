@@ -7,14 +7,14 @@ extends Node3D
 @onready var palace_scene = preload("res://scenes/palace.tscn")
 @onready var group_name = get_groups()[0]
 
-var food:int = 0
+var food:int = 0 
 var protein:int = 0
 var leaves:int = 0
 
 var start_spawned = false
 
 func spawn_starter_units():
-	var terrain = $"../TerrainBody" # reference to terrain for later
+	var terrain = $"../NavRegion/TerrainBody" # reference to terrain for later
 	var world = get_parent()
 	# Spawn a palace
 	var instance = palace_scene.instantiate()

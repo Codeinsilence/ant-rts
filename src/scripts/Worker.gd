@@ -9,19 +9,17 @@ var moving = false
 func _ready():
 	health = 100.0;
 	location = self.global_position;
-	move = Movement.new();
+	move = $Movement
 	$SelectionRing.hide()
 	
 	super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# Quick Movement test
-	location = self.global_position;
-	_move(delta);
+	pass
 
 func set_destination(target):
-	move._set_destination(location, target)
+	$Movement._set_destination(location, target)
 
 func set_moving(moving_bool):
 	moving = moving_bool
@@ -38,23 +36,22 @@ func remove_from_selected_units():
 	$SelectionRing.hide()
 
 # Code taken from A3
-func _move(delta):
-	var pt
-	var tg
-	
-	if moving:
-		t += step
-		var val = move._move(t)
-		if val == []:
-			moving = false;
-			t = 0;
-			return
-		pt = val[0]
-		tg = val[1]
-		t += step
-		self.transform = Transform3D().translated(pt) * \
-						 Transform3D().looking_at(tg, Vector3.UP) *\
-						 Transform3D().rotated(Vector3.UP, -PI/2.0) *\
-						 Transform3D().scaled(scale)
-
+#func _move(delta):
+	#var pt
+	#var tg
+	#
+	#if moving:
+		#t += step
+		#var val = move._move(t)
+		#if val == []:
+			#moving = false;
+			#t = 0;
+			#return
+		#pt = val[0]
+		#tg = val[1]
+		#t += step
+		#self.transform = Transform3D().translated(pt) * \
+						 #Transform3D().looking_at(tg, Vector3.UP) *\
+						 #Transform3D().rotated(Vector3.UP, -PI/2.0) *\
+						 #Transform3D().scaled(scale)
 
