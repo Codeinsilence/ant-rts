@@ -1,19 +1,20 @@
 extends Node3D
 
-@export var team : String = "none"
-@export var team_color : Color = Color(0.7, 0.7, 0.7, 1.0)
-
 @onready var worker_scene = preload("res://scenes/collision_ant.tscn")
 @onready var palace_scene = preload("res://scenes/palace.tscn")
 @onready var group_name = get_groups()[0]
+
+@export var team : String = "none" ##Specify the team name
+@export var team_color : Color = Color(0.7, 0.7, 0.7, 1.0) ##Specify the team color (affects all units and buildings)
+@export var food_initial:int = 50 ##Specify the initial value for the food supply
+@export var protein_initial:int = 0 ##Specify the initial value for the protein supply
+@export var foliage_initial:int = 0 ##Specify the initial value for the foliage supply
+@export var spawn_interval : float = 15.0 ##Specify the time needed for the Palace to spawn a new unit
 
 # Resource tracking
 var food:int = 0 
 var protein:int = 0
 var foliage:int = 0
-@export var food_initial:int = 50
-@export var protein_initial:int = 0
-@export var foliage_initial:int = 0
 
 # Costs for units
 var cost_worker = { "food" : 10,
@@ -26,7 +27,6 @@ var cost_palace = { "food" : 50,
 
 var start_spawned = false
 
-@export var spawn_interval : float = 15.0 # how often to spawn a batch of new ants
 var spawn_timer : float
 
 func spawn_starter_units():
@@ -37,19 +37,18 @@ func spawn_starter_units():
 	instance.position = position + Vector3(0, 0, 0)
 	instance.position.y = terrain.height_at(instance.position) + 0.1 # Fix height to just above terrain
 	instance.add_to_group(group_name)
+	instance.set_selectionring_color(team_color)
+	instance.get_node("SelectionRing").visible = false
 	world.add_child(instance)
 	# Spawn 3 workers
 	for i in range(3):
 		instance.get_node("Spawning").spawn_worker(self)
-		
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	spawn_timer = spawn_interval
 	food = food_initial
 	protein = protein_initial
 	foliage = foliage_initial
-	pass # Replace with function body.
 
 func _physics_process(delta):
 	_handle_spawn_timer(delta)
@@ -95,11 +94,6 @@ func _handle_spawn_timer(delta):
 	for member in get_tree().get_nodes_in_group(group_name):
 		if member.has_node("Spawning"):
 			member.get_node("Spawning")._on_spawn_time(self)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 
 func _on_leaf_collected():
 	foliage = foliage + 1

@@ -26,38 +26,8 @@ func set_destination(target:Vector3):
 func set_moving(moving_bool):
 	moving = moving_bool
 	
-func set_selectionring_color(col : Color):
-	$SelectionRing.mesh.material.albedo_color = col
 
-func add_to_selected_units():
-	self.add_to_group("selected_units");
-	$SelectionRing.show()
-
-func remove_from_selected_units():
-	self.remove_from_group("selected_units");
-	$SelectionRing.hide()
 
 func collect_resource(resource):
 	set_destination(resource.global_position);
 	$Carrying._set_resource_target(resource)
-
-# Code taken from A3
-#func _move(delta):
-	#var pt
-	#var tg
-	#
-	#if moving:
-		#t += step
-		#var val = move._move(t)
-		#if val == []:
-			#moving = false;
-			#t = 0;
-			#return
-		#pt = val[0]
-		#tg = val[1]
-		#t += step
-		#self.transform = Transform3D().translated(pt) * \
-						 #Transform3D().looking_at(tg, Vector3.UP) *\
-						 #Transform3D().rotated(Vector3.UP, -PI/2.0) *\
-						 #Transform3D().scaled(scale)
-

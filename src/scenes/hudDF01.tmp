@@ -135,23 +135,23 @@ theme = ExtResource("2_l1wnt")
 [node name="GridContainer" type="GridContainer" parent="ActionPanel/GridContainer/UnitStats"]
 layout_mode = 2
 
-[node name="Health" type="PanelContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer"]
+[node name="HP" type="PanelContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_l1wnt")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Health"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer/HP"]
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Health/HBoxContainer"]
+[node name="Label" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/HP/HBoxContainer"]
 clip_contents = false
 layout_mode = 2
 bbcode_enabled = true
-text = "[b]HP"
+text = "[b]Food"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Value" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Health/HBoxContainer"]
+[node name="Value" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/HP/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "0"
@@ -159,23 +159,47 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Speed" type="PanelContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer"]
+[node name="Protein" type="PanelContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_l1wnt")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Speed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Protein"]
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Speed/HBoxContainer"]
+[node name="Label" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Protein/HBoxContainer"]
 clip_contents = false
 layout_mode = 2
 bbcode_enabled = true
-text = "[b]Speed"
+text = "[b]Protein"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Value" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Speed/HBoxContainer"]
+[node name="Value" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Protein/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Status" type="PanelContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer"]
+layout_mode = 2
+theme = ExtResource("2_l1wnt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Status"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Status/HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Foliage"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Value" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Status/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "0"

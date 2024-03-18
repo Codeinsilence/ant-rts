@@ -6,7 +6,6 @@ var done_first_frame_setup = false
 @onready var foliage = preload("res://scenes/leaf.tscn");
 var rng = RandomNumberGenerator.new()
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
