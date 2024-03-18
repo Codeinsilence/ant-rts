@@ -1,12 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbifri1hqur2l"]
+[gd_scene load_steps=8 format=3 uid="uid://dbifri1hqur2l"]
 
 [ext_resource type="Script" path="res://scripts/Palace.gd" id="1_bx2lr"]
+[ext_resource type="ArrayMesh" uid="uid://rol644wm7f44" path="res://assets/models/palace.obj" id="2_n25bs"]
 [ext_resource type="Script" path="res://scripts/capabilities/Spawning.gd" id="2_q5l4b"]
+[ext_resource type="Material" uid="uid://brcv7uw6qldcw" path="res://assets/materials/palace_material.tres" id="3_kjxvx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ykwym"]
 size = Vector3(3, 1.5, 3)
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_jfph7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvaca"]
 resource_local_to_scene = true
@@ -21,11 +21,6 @@ outer_radius = 0.45
 rings = 16
 ring_segments = 4
 
-[sub_resource type="BoxMesh" id="BoxMesh_bs670"]
-size = Vector3(3, 1.5, 3)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_mxasd"]
-
 [node name="Palace" type="CharacterBody3D"]
 script = ExtResource("1_bx2lr")
 
@@ -33,23 +28,16 @@ script = ExtResource("1_bx2lr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("BoxShape3D_ykwym")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.5, 0.5)
-shape = SubResource("CylinderShape3D_jfph7")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.4, 0)
+mesh = ExtResource("2_n25bs")
+surface_material_override/0 = ExtResource("3_kjxvx")
+surface_material_override/1 = ExtResource("3_kjxvx")
+surface_material_override/2 = ExtResource("3_kjxvx")
 
 [node name="SelectionRing" type="MeshInstance3D" parent="."]
-transform = Transform3D(6, 0, 0, 0, 0.1, 0, 0, 0, 6, 0, 0.07, 0)
+transform = Transform3D(5.5, 0, 0, 0, 0.1, 0, 0, 0, 5.5, 0, 0.07, 0)
 mesh = SubResource("TorusMesh_ugm0x")
-
-[node name="BaseMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-mesh = SubResource("BoxMesh_bs670")
-skeleton = NodePath("../..")
-
-[node name="TowerMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.5, 0.5)
-mesh = SubResource("CylinderMesh_mxasd")
-skeleton = NodePath("../..")
 
 [node name="Spawning" type="Node" parent="."]
 script = ExtResource("2_q5l4b")
