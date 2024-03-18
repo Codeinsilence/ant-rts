@@ -2,19 +2,26 @@
 # Purpose: Adds dynamic behavior to the HUD
 extends Control
 
+@onready var status_bar = get_node("StatusBar")
+@onready var hud_food = status_bar.get_node("GridContainer/Food/HBoxContainer/Value")
+@onready var hud_protein = status_bar.get_node("GridContainer/Protein/HBoxContainer/Value")
+@onready var hud_foliage = status_bar.get_node("GridContainer/Foliage/HBoxContainer/Value")
+
 @onready var action_panel = get_node("ActionPanel")
-
-var selected_units: Array
-
 @onready var portrait = action_panel.get_node("GridContainer/UnitPortrait")
 @onready var stat_panel = action_panel.get_node("GridContainer/UnitStats")
 @onready var actions = action_panel.get_node("GridContainer/UnitActions")
-
 @onready var hud_hp = stat_panel.get_node("GridContainer/Health/HBoxContainer/Value")
 @onready var hud_speed = stat_panel.get_node("GridContainer/Speed/HBoxContainer/Value")
 
+var colony = null
+
 func _ready():
 	action_panel.visible = false
+
+func _physics_process(delta):
+	pass
+	_update_status_bar(colony)
 
 func _process(delta):
 	## Hide the panel unless a unit is selected
@@ -39,3 +46,16 @@ func _update_action_panel(unit: Unit):
 		hud_speed.text = str(movement.speed)
 	else:
 		hud_speed.text = "0"
+
+func _update_status_bar(colony):
+	if(colony == null): return
+	
+	hud_food.text = str(colony.food)
+	hud_protein.text = str(colony.protein)
+	hud_foliage.text = str(colony.foliage)
+
+func _on_player_colony_ready():
+	var player_units = get_tree().get_nodes_in_group("player")
+	for unit in player_units:
+		if(unit.name == "PlayerColony"):
+			colony = unit

@@ -77,7 +77,7 @@ func right_selection():
 	if(result and get_tree().has_group("selected_units")):
 		if(result.collider.has_method("harvest_self")):
 			for member in get_tree().get_nodes_in_group("selected_units"):
-				if member.is_in_group("player"):
+				if member.is_in_group("player") && member.has_node("Carrying"):
 					member.collect_resource(result.collider)
 					member.set_moving(true)
 		else:

@@ -109,4 +109,5 @@ team_color = Color(1, 0.278431, 0.290196, 1)
 [node name="leaf" parent="." instance=ExtResource("12_hnwa2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.60812, 10.6585, 17.0037)
 
+[connection signal="ready" from="PlayerColony" to="hud" method="_on_player_colony_ready"]
 [connection signal="leafCollected" from="leaf" to="PlayerColony" method="_on_leaf_collected"]

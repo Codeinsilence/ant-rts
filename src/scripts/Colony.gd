@@ -1,4 +1,4 @@
-extends Node3D
+class_name Colony extends Node3D
 
 @onready var worker_scene = preload("res://scenes/collision_ant.tscn")
 @onready var palace_scene = preload("res://scenes/palace.tscn")
@@ -49,6 +49,7 @@ func _ready():
 	food = food_initial
 	protein = protein_initial
 	foliage = foliage_initial
+	
 
 func _physics_process(delta):
 	_handle_spawn_timer(delta)
