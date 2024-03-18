@@ -18,7 +18,6 @@ func _physics_process(delta):
 		_spawn_resources()
 		done_first_frame_setup = true
 	
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

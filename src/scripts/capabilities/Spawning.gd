@@ -2,11 +2,11 @@ extends Node
 
 class_name Spawning
 
-var worker_scene = preload("res://scenes/collision_ant.tscn")
+var worker_scene = preload("res://scenes/worker.tscn")
 
 var workers_per_interval = 1
 
-var spawn_position_counter = 0
+var spawn_position_counter = 0 # Increments to make ants come out at different spots
 var spawn_distance = 2.0
 
 func _on_spawn_time(colony):
@@ -28,8 +28,7 @@ func spawn_worker(colony):
 	# Add to world
 	get_tree().root.get_node("World").add_child(new_worker)
 	# Set team info
-	new_worker.set_selectionring_color(colony.team_color)
-	new_worker.add_to_group(colony.group_name)
+	new_worker.set_colony(colony)
 	# Make it walk a little farther
 	var dest = get_parent().position + 3.0 * spawn_offset
 	new_worker.set_destination(dest)

@@ -33,12 +33,10 @@ func spawn_starter_units():
 	var terrain = $"../NavRegion/TerrainBody" # reference to terrain for later
 	var world = get_parent()
 	# Spawn a palace
-	var instance = palace_scene.instantiate()
+	var instance : Palace = palace_scene.instantiate()
 	instance.position = position + Vector3(0, 0, 0)
 	instance.position.y = terrain.height_at(instance.position) + 0.1 # Fix height to just above terrain
-	instance.add_to_group(group_name)
-	instance.set_selectionring_color(team_color)
-	instance.get_node("SelectionRing").visible = false
+	instance.set_colony(self)
 	world.add_child(instance)
 	# Spawn 3 workers
 	for i in range(3):

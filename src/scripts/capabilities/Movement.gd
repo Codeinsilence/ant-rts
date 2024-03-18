@@ -4,9 +4,7 @@ class_name Movement
 
 #var object : Node3D
 @onready var nav : NavigationAgent3D = $"../NavAgent"
-var location : Vector3
 var destination: Vector3
-var tangent : Vector3
 @export var speed : float
 
 func look_at(target : Vector3):
@@ -28,10 +26,8 @@ func _physics_process(delta):
 	# Note: Only *attempts* to move on this velocity. Actual movement on _on_veclocity_computed()
 	nav.velocity = $"../".position.direction_to(nav.get_next_path_position()) * speed
 
-func _set_destination(loc, dest:Vector3):
-	location = loc;
+func set_destination(dest:Vector3):
 	destination = dest;
-	tangent = destination - location;
 	nav.set_target_position(dest)
 	
 func _on_velocity_computed(safe_velocity : Vector3) -> void:
@@ -42,18 +38,3 @@ func _on_velocity_computed(safe_velocity : Vector3) -> void:
 	parent.velocity = safe_velocity
 	parent.move_and_slide()
 
-#func _move(t) -> Array:
-	#if t < 0.0:
-		#t = 0.0
-	#if t > 1.0:
-		#t = 1.0
-		#
-	#var v1 = 2*pow(t, 3) - 3*pow(t, 2) + 1
-	#var v2 = pow(t, 3) - 2*pow(t, 2) + t
-	#var v3 = -2*pow(t, 3) + 3*pow(t, 2)
-	#var v4 = pow(t, 3) - pow(t, 2)
-	#
-	#var interp = (v1 * location) + (v2 * tangent) + (v3 * destination) + (v4 * tangent);
-	#if(interp == destination):
-		#return [];
-	#return [interp, tangent];

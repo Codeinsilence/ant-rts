@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dbifri1hqur2l"]
 
 [ext_resource type="Script" path="res://scripts/Palace.gd" id="1_bx2lr"]
-[ext_resource type="ArrayMesh" uid="uid://rol644wm7f44" path="res://assets/models/palace.obj" id="2_n25bs"]
+[ext_resource type="ArrayMesh" uid="uid://ddf7nomthb5k5" path="res://assets/models/palace.obj" id="2_n25bs"]
 [ext_resource type="Script" path="res://scripts/capabilities/Spawning.gd" id="2_q5l4b"]
 [ext_resource type="Material" uid="uid://brcv7uw6qldcw" path="res://assets/materials/palace_material.tres" id="3_kjxvx"]
 
@@ -16,19 +16,19 @@ albedo_color = Color(0.588235, 0.588235, 0.588235, 0.647059)
 [sub_resource type="TorusMesh" id="TorusMesh_ugm0x"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_pvaca")
-inner_radius = 0.35
-outer_radius = 0.45
+inner_radius = 2.0
+outer_radius = 2.2
 rings = 16
 ring_segments = 4
 
 [node name="Palace" type="CharacterBody3D"]
 script = ExtResource("1_bx2lr")
 
-[node name="BaseColl" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("BoxShape3D_ykwym")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.4, 0)
 mesh = ExtResource("2_n25bs")
 surface_material_override/0 = ExtResource("3_kjxvx")
@@ -36,7 +36,7 @@ surface_material_override/1 = ExtResource("3_kjxvx")
 surface_material_override/2 = ExtResource("3_kjxvx")
 
 [node name="SelectionRing" type="MeshInstance3D" parent="."]
-transform = Transform3D(5.5, 0, 0, 0, 0.1, 0, 0, 0, 5.5, 0, 0.07, 0)
+transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0.07, 0)
 mesh = SubResource("TorusMesh_ugm0x")
 
 [node name="Spawning" type="Node" parent="."]

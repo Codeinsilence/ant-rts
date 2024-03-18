@@ -21,13 +21,7 @@ func _process(delta):
 	pass
 
 func set_destination(target:Vector3):
-	$Movement._set_destination(location, target)
+	$Movement.set_destination(target)
 
 func set_moving(moving_bool):
 	moving = moving_bool
-	
-
-
-func collect_resource(resource):
-	set_destination(resource.global_position);
-	$Carrying._set_resource_target(resource)
