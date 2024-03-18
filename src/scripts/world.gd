@@ -3,6 +3,7 @@ extends Node3D
 var done_first_frame_setup = false
 
 @onready var berry = preload("res://scenes/berry.tscn");
+@onready var protein = preload("res://scenes/protein.tscn");
 @onready var foliage = preload("res://scenes/leaf.tscn");
 var rng = RandomNumberGenerator.new()
 
@@ -32,6 +33,15 @@ func _spawn_resources():
 		instance.position.z = rng.randf_range(10.0, 100.0);
 		instance.position.y = terrain.height_at(instance.position) + 0.1;
 		instance.connect("foodCollected", $PlayerColony._on_food_collected);
+		add_child(instance);
+	
+	for i in range(5):
+		var instance = protein.instantiate();
+		instance.position = position + Vector3(0, 0, 0);
+		instance.position.x = rng.randf_range(10.0, 100.0);
+		instance.position.z = rng.randf_range(10.0, 100.0);
+		instance.position.y = terrain.height_at(instance.position) + 0.1;
+		instance.connect("proteinCollected", $PlayerColony._on_protein_collected);
 		add_child(instance);
 	
 	#Spawn Foliage 

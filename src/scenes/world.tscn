@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bdcix7btpgesh"]
+[gd_scene load_steps=17 format=3 uid="uid://bdcix7btpgesh"]
 
 [ext_resource type="Script" path="res://scripts/Camera3D.gd" id="1_3prb5"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gq715"]
@@ -6,13 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://dhhfw2mybla5l" path="res://scenes/hud.tscn" id="2_ceh7v"]
 [ext_resource type="ArrayMesh" uid="uid://dgjm3h15ediah" path="res://assets/models/terrain_old.tres" id="3_aq7lx"]
 [ext_resource type="Script" path="res://scripts/terrain_generation.gd" id="3_b73su"]
-[ext_resource type="Texture2D" uid="uid://cbnkj5k0jh2f7" path="res://assets/dirt_texture.png" id="4_2iqta"]
 [ext_resource type="Script" path="res://scripts/TerrainBody.gd" id="4_bacyx"]
-[ext_resource type="PackedScene" uid="uid://djqv4l1mcymid" path="res://scenes/dbg_ant.tscn" id="4_v2512"]
-[ext_resource type="PackedScene" uid="uid://ba341xr06ovjq" path="res://scenes/collision_ant.tscn" id="6_4es7m"]
+[ext_resource type="Texture2D" uid="uid://cqeq7iehcpmxi" path="res://assets/dirt.png" id="7_jrcwk"]
 [ext_resource type="Script" path="res://scripts/TerrainCollision.gd" id="7_npo62"]
+[ext_resource type="Texture2D" uid="uid://p1gunorovsji" path="res://assets/dirt_normalmap.png" id="8_p2mex"]
 [ext_resource type="Script" path="res://scripts/Colony.gd" id="9_l2lnn"]
-[ext_resource type="PackedScene" uid="uid://dajaa1lek7ulx" path="res://scenes/leaf.tscn" id="12_hnwa2"]
 
 [sub_resource type="Environment" id="Environment_7pos8"]
 ssao_sharpness = 0.0
@@ -26,8 +24,11 @@ polygons = [PackedInt32Array(29, 68, 3), PackedInt32Array(3, 68, 4), PackedInt32
 agent_height = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5oyc8"]
-albedo_texture = ExtResource("4_2iqta")
-uv1_scale = Vector3(10, 10, 10)
+albedo_texture = ExtResource("7_jrcwk")
+normal_enabled = true
+normal_scale = 0.3
+normal_texture = ExtResource("8_p2mex")
+uv1_scale = Vector3(2, 2, 2)
 uv2_scale = Vector3(10, 10, 10)
 
 [sub_resource type="HeightMapShape3D" id="HeightMapShape3D_7i73e"]
@@ -68,10 +69,6 @@ directional_shadow_split_1 = 0.05
 directional_shadow_max_distance = 843.6
 directional_shadow_pancake_size = 1.1
 
-[node name="dbg_ant" parent="." instance=ExtResource("4_v2512")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.294, 3.8, -3.798)
-cast_shadow = 2
-
 [node name="NavRegion" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_0rpok")
 
@@ -89,9 +86,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127.5, 0, 127.5)
 shape = SubResource("HeightMapShape3D_7i73e")
 script = ExtResource("7_npo62")
 
-[node name="collision_ant" parent="." instance=ExtResource("6_4es7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66472, 9.8312, 1.63857)
-
 [node name="PlayerColony" type="Node3D" parent="." groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 16, 16)
 script = ExtResource("9_l2lnn")
@@ -106,8 +100,4 @@ script = ExtResource("9_l2lnn")
 team = "enemy"
 team_color = Color(1, 0.278431, 0.290196, 1)
 
-[node name="leaf" parent="." instance=ExtResource("12_hnwa2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.60812, 10.6585, 17.0037)
-
 [connection signal="ready" from="PlayerColony" to="hud" method="_on_player_colony_ready"]
-[connection signal="leafCollected" from="leaf" to="PlayerColony" method="_on_leaf_collected"]

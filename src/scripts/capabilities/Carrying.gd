@@ -5,7 +5,7 @@ class_name Carrying
 var target_resource : Node3D
 var unit_location : Vector3
 var inventory : Array
-var carry_distance = 1.2
+var carry_distance = 1.7
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -8,13 +8,10 @@ points = PackedVector3Array(-1.06086, 0.819971, -0.000195146, -0.863347, 1.18291
 
 [node name="berry" type="RigidBody3D"]
 script = ExtResource("1_ndivn")
-type = "Food"
+type = "food"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 mesh = ExtResource("1_yaqxu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-visible = false
 shape = SubResource("ConvexPolygonShape3D_k11wk")

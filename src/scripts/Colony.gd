@@ -103,3 +103,7 @@ func _on_leaf_collected():
 func _on_food_collected():
 	food = food + 1
 	print("Player food: " + str(food))
+
+func _on_protein_collected():
+	protein = protein + 1
+	print("Player protein: " + str(protein))

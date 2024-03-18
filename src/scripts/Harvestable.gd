@@ -4,7 +4,7 @@ class_name Harvestable extends Node3D
 var location: Vector3
 
 signal leafCollected
-#signal proteinCollected
+signal proteinCollected
 signal foodCollected
 
 # Called when the node enters the scene tree for the first time.
@@ -17,7 +17,10 @@ func _process(delta):
 	
 func harvest_self():
 	self.queue_free()
-	if(type == "leaf"):
-		emit_signal("leafCollected")
-	if(type == "Food"):
+	if(type == "food"):
 		emit_signal("foodCollected")
+	if(type == "protein"):
+		emit_signal("proteinCollected")
+	if(type == "foliage"):
+		emit_signal("leafCollected")
+
