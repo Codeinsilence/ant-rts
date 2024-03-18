@@ -1,15 +1,22 @@
 class_name Unit extends CharacterBody3D
 
-# Adding properties
-@export var health : float
+##current health
+@export var health : int
+##location (global coordinates)
 @export var location: Vector3
+##the current action the unit is trying to perform
 @export var cur_action : String
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("selectable")
 
+func add_to_selected_units():
+	self.add_to_group("selected_units");
+	$SelectionRing.show()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func set_selectionring_color(col : Color):
+	$SelectionRing.mesh.material.albedo_color = col
+
+func remove_from_selected_units():
+	self.remove_from_group("selected_units");
+	$SelectionRing.hide()

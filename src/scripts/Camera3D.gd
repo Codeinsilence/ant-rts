@@ -59,7 +59,8 @@ func mouse_selection():
 	var end = project_position(mouse_pos, ray_length);
 	var result = worldspace.intersect_ray(PhysicsRayQueryParameters3D.create(start, end));
 	return result;
-		
+
+## Single unit selection
 func left_selection():
 	var result = mouse_selection()
 	# If not holding shift, clear out selected group first
@@ -69,23 +70,25 @@ func left_selection():
 	if(result and result.collider.has_method("add_to_selected_units")):
 		result.collider.add_to_selected_units();
 
+## Issues commands on selected group
 func right_selection():
 	var result = mouse_selection()
 	#note: ant only moves if result has valid position
 	if(result and get_tree().has_group("selected_units")):
 		if(result.collider.has_method("harvest_self")):
 			for member in get_tree().get_nodes_in_group("selected_units"):
-				if member.is_in_group("player"):
+				if member.is_in_group("player") && member.has_node("Carrying"):
 					member.collect_resource(result.collider)
 					member.set_moving(true)
 		else:
 			for member in get_tree().get_nodes_in_group("selected_units"):
-				if member.is_in_group("player"):
+				if member.is_in_group("player") && member.has_node("Movement"):
 					member.set_destination(result.position)
 					member.set_moving(true)
 		#get_tree().call_group("selected_units", "set_destination", result.position);
 		#get_tree().call_group("selected_units", "set_moving", true);
 
+## Drawing a selection box
 func box_selection(corner1, corner2):
 	# Define the box
 	var top_left_corner = Vector2(min(corner1.x, corner2.x), min(corner1.y, corner2.y))

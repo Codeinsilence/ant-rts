@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbifri1hqur2l"]
+[gd_scene load_steps=9 format=3 uid="uid://dbifri1hqur2l"]
 
 [ext_resource type="Script" path="res://scripts/Palace.gd" id="1_bx2lr"]
 [ext_resource type="Script" path="res://scripts/capabilities/Spawning.gd" id="2_q5l4b"]
@@ -7,6 +7,19 @@
 size = Vector3(3, 1.5, 3)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jfph7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvaca"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(0.588235, 0.588235, 0.588235, 0.647059)
+
+[sub_resource type="TorusMesh" id="TorusMesh_ugm0x"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_pvaca")
+inner_radius = 0.35
+outer_radius = 0.45
+rings = 16
+ring_segments = 4
 
 [sub_resource type="BoxMesh" id="BoxMesh_bs670"]
 size = Vector3(3, 1.5, 3)
@@ -23,6 +36,10 @@ shape = SubResource("BoxShape3D_ykwym")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.5, 0.5)
 shape = SubResource("CylinderShape3D_jfph7")
+
+[node name="SelectionRing" type="MeshInstance3D" parent="."]
+transform = Transform3D(6, 0, 0, 0, 0.1, 0, 0, 0, 6, 0, 0.07, 0)
+mesh = SubResource("TorusMesh_ugm0x")
 
 [node name="BaseMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)

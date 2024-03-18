@@ -1,0 +1,189 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhhfw2mybla5l"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_cwn8g"]
+[ext_resource type="Theme" uid="uid://drrq3u28ywljf" path="res://themes/infoPanel.tres" id="2_l1wnt"]
+[ext_resource type="Theme" uid="uid://cgo8x8uw2m2na" path="res://themes/hud.tres" id="2_lyc21"]
+[ext_resource type="Texture2D" uid="uid://b5y2ph1evm5vt" path="res://assets/unknownPortrait.png" id="3_nyiol"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqf4j"]
+bg_color = Color(0.486275, 0.231373, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[node name="hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lyc21")
+script = ExtResource("1_cwn8g")
+
+[node name="StatusBar" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vqf4j")
+
+[node name="GridContainer" type="GridContainer" parent="StatusBar"]
+layout_mode = 2
+columns = 3
+
+[node name="Food" type="PanelContainer" parent="StatusBar/GridContainer"]
+layout_mode = 2
+theme = ExtResource("2_l1wnt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/GridContainer/Food"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="StatusBar/GridContainer/Food/HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Food"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Value" type="RichTextLabel" parent="StatusBar/GridContainer/Food/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Protein" type="PanelContainer" parent="StatusBar/GridContainer"]
+layout_mode = 2
+theme = ExtResource("2_l1wnt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/GridContainer/Protein"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="StatusBar/GridContainer/Protein/HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Protein"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Value" type="RichTextLabel" parent="StatusBar/GridContainer/Protein/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Foliage" type="PanelContainer" parent="StatusBar/GridContainer"]
+layout_mode = 2
+theme = ExtResource("2_l1wnt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/GridContainer/Foliage"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="StatusBar/GridContainer/Foliage/HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Foliage"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Value" type="RichTextLabel" parent="StatusBar/GridContainer/Foliage/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ActionPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="ActionPanel"]
+layout_mode = 2
+theme_override_constants/h_separation = 5
+columns = 3
+
+[node name="UnitPortrait" type="TextureRect" parent="ActionPanel/GridContainer"]
+layout_mode = 2
+texture = ExtResource("3_nyiol")
+stretch_mode = 4
+
+[node name="UnitStats" type="PanelContainer" parent="ActionPanel/GridContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("2_l1wnt")
+
+[node name="GridContainer" type="GridContainer" parent="ActionPanel/GridContainer/UnitStats"]
+layout_mode = 2
+
+[node name="Health" type="PanelContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer"]
+layout_mode = 2
+theme = ExtResource("2_l1wnt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Health"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Health/HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]HP"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Value" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Health/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Speed" type="PanelContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer"]
+layout_mode = 2
+theme = ExtResource("2_l1wnt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Speed"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Speed/HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Speed"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Value" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Speed/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="UnitActions" type="PanelContainer" parent="ActionPanel/GridContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme = ExtResource("2_l1wnt")

@@ -17,7 +17,6 @@ func update_positions(start, end):
 func _ready():
 	cam = get_parent()
 	hide() 
-	pass # Replace with function body.
 	
 func _draw():
 	# Abort if below min_size
