@@ -1,6 +1,6 @@
 class_name Colony extends Node3D
 
-@onready var worker_scene = preload("res://scenes/collision_ant.tscn")
+@onready var worker_scene = preload("res://scenes/worker.tscn")
 @onready var palace_scene = preload("res://scenes/palace.tscn")
 @onready var group_name = get_groups()[0]
 
