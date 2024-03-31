@@ -23,8 +23,13 @@ func _process(delta):
 func decrease_amount(n:int) -> int:
 	var taken = min(n, amount)
 	amount -= taken
-	if amount <= 0 : queue_free()
+	if amount <= 0 : _remove_from_world(type);
 	return taken
+	
+func _remove_from_world(t: String):
+	queue_free(); 
+	var world = get_tree().get_root().get_node("World")
+	world.world_resources[t] -= 1
 
 func harvest_self():
 	self.queue_free()
