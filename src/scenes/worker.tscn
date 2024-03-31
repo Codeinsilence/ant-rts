@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://ct2q6kxoka77v"]
+[gd_scene load_steps=11 format=3 uid="uid://ct2q6kxoka77v"]
 
 [ext_resource type="Script" path="res://scripts/Worker.gd" id="1_b4n5h"]
+[ext_resource type="PackedScene" uid="uid://b14arbccb6yta" path="res://scenes/worker_mesh_animated.tscn" id="2_hr47i"]
 [ext_resource type="ArrayMesh" uid="uid://b0lpm5e2vcbwe" path="res://assets/models/smolant.obj" id="2_x2eth"]
 [ext_resource type="Texture2D" uid="uid://n37wui5vax5n" path="res://assets/models/ant.jpg" id="3_svpua"]
 [ext_resource type="Script" path="res://scripts/capabilities/Movement.gd" id="4_y8gs0"]
@@ -32,8 +33,13 @@ ring_segments = 4
 [node name="collision_ant" type="CharacterBody3D"]
 script = ExtResource("1_b4n5h")
 
+[node name="WorkerMeshAnimated" parent="." instance=ExtResource("2_hr47i")]
+transform = Transform3D(-2.18557e-09, 0, -0.05, 0, 0.05, 0, 0.05, 0, -2.18557e-09, 0, 0.315096, -0.102246)
+script = null
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.32, -0.1)
+visible = false
 mesh = ExtResource("2_x2eth")
 surface_material_override/0 = SubResource("StandardMaterial3D_26bhb")
 
