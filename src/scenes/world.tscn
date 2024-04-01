@@ -7,7 +7,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dgjm3h15ediah" path="res://assets/models/terrain_old.tres" id="3_aq7lx"]
 [ext_resource type="Script" path="res://scripts/terrain_generation.gd" id="3_b73su"]
 [ext_resource type="Script" path="res://scripts/TerrainBody.gd" id="4_bacyx"]
-[ext_resource type="Texture2D" uid="uid://cqeq7iehcpmxi" path="res://assets/dirt.png" id="7_jrcwk"]
+[ext_resource type="Texture2D" uid="uid://1h0xh738crr2" path="res://assets/sand_texture.png" id="6_476td"]
 [ext_resource type="Script" path="res://scripts/TerrainCollision.gd" id="7_npo62"]
 [ext_resource type="Texture2D" uid="uid://p1gunorovsji" path="res://assets/dirt_normalmap.png" id="8_p2mex"]
 [ext_resource type="Script" path="res://scripts/Colony.gd" id="9_l2lnn"]
@@ -24,7 +24,8 @@ polygons = [PackedInt32Array(29, 68, 3), PackedInt32Array(3, 68, 4), PackedInt32
 agent_height = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5oyc8"]
-albedo_texture = ExtResource("7_jrcwk")
+albedo_texture = ExtResource("6_476td")
+albedo_texture_force_srgb = true
 normal_enabled = true
 normal_scale = 0.3
 normal_texture = ExtResource("8_p2mex")
