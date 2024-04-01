@@ -41,7 +41,7 @@ func _spawn_resources():
 	
 	for i in range(minimum_resources):
 		var instance = protein.instantiate();
-		_spawning_location(instance, 0.1)
+		_spawning_location(instance, 10.0)
 		instance.connect("proteinCollected", $PlayerColony._on_protein_collected);
 		add_child(instance);
 		world_resources["protein"] += 1;

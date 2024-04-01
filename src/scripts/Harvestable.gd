@@ -18,6 +18,10 @@ func _ready():
 func _process(delta):
 	pass
 
+func _physics_process(delta):
+	if(position.y < 0):
+		_remove_from_world(type)
+
 # Decreases the amount of resource left on this node, up to a max of the amount left
 # Returns the amount that was lost
 func decrease_amount(n:int) -> int:
