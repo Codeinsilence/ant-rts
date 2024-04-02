@@ -68,7 +68,7 @@ script = ExtResource("5_5vae3")
 
 [node name="Attack" type="Node" parent="."]
 script = ExtResource("7_sqh4y")
-attack_distance = 1.0
+attack_distance = 1.5
 rate_of_attack = 3.0
 damage = 10.0
 
