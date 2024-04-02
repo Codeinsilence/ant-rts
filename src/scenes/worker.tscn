@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ct2q6kxoka77v"]
+[gd_scene load_steps=12 format=3 uid="uid://ct2q6kxoka77v"]
 
 [ext_resource type="Script" path="res://scripts/Worker.gd" id="1_b4n5h"]
 [ext_resource type="PackedScene" uid="uid://b14arbccb6yta" path="res://scenes/worker_mesh_animated.tscn" id="2_hr47i"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://n37wui5vax5n" path="res://assets/models/ant.jpg" id="3_svpua"]
 [ext_resource type="Script" path="res://scripts/capabilities/Movement.gd" id="4_y8gs0"]
 [ext_resource type="Script" path="res://scripts/capabilities/Carrying.gd" id="5_5vae3"]
+[ext_resource type="Script" path="res://scripts/capabilities/Attack.gd" id="7_sqh4y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26bhb"]
 albedo_texture = ExtResource("3_svpua")
@@ -32,10 +33,10 @@ ring_segments = 4
 
 [node name="collision_ant" type="CharacterBody3D"]
 script = ExtResource("1_b4n5h")
+max_health = 100
 
 [node name="WorkerMeshAnimated" parent="." instance=ExtResource("2_hr47i")]
 transform = Transform3D(-2.18557e-09, 0, -0.05, 0, 0.05, 0, 0.05, 0, -2.18557e-09, 0, 0.315096, -0.102246)
-script = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.32, -0.1)
@@ -64,5 +65,11 @@ speed = 5.0
 
 [node name="Carrying" type="Node" parent="."]
 script = ExtResource("5_5vae3")
+
+[node name="Attack" type="Node" parent="."]
+script = ExtResource("7_sqh4y")
+attack_distance = 1.5
+rate_of_attack = 3.0
+damage = 10.0
 
 [connection signal="velocity_computed" from="NavAgent" to="Movement" method="_on_velocity_computed"]

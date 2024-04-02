@@ -93,12 +93,22 @@ func right_selection():
 				if member.carry.inventory_space_remaining() < member.carry.inventory_size:
 					member.carry.set_dropoff_target(result.collider)
 					special_command_issued = true
+	
+	elif result.collider.has_node("Movement") and result.collider.is_in_group("enemy"):
+		for member in get_tree().get_nodes_in_group("selected_units"):
+			if member.has_node("Attack"):
+				member.attack._set_attack_target(result.collider)
+				member.attack._set_attack_mode(true)
+				special_command_issued = true
+	
 	# Move to location
 	if special_command_issued : return
 	for member in get_tree().get_nodes_in_group("selected_units"):
 			if member.is_in_group("player") && member.has_node("Movement"):
 				member.set_destination(result.position)
 				member.set_moving(true)
+				if member.has_node("Attack"):
+					member.attack._set_attack_mode(false)
 
 ## Drawing a selection box
 func box_selection(corner1, corner2):
