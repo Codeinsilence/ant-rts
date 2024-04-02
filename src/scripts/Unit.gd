@@ -35,3 +35,8 @@ func remove_from_selected_units():
 	self.remove_from_group("selected_units");
 	if has_node("SelectionRing"):
 		$SelectionRing.hide()
+
+func decrease_health(amt: float):
+	health -= amt
+	if health <= 0:
+		queue_free()

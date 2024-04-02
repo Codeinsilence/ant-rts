@@ -2,6 +2,7 @@ class_name Worker extends Unit
 
 var move : Movement
 var carry : Carrying
+var attack : Attack
 var step = 0.01
 var t = 0.0
 var moving = false
@@ -16,6 +17,7 @@ func _ready():
 	location = self.global_position;
 	move = $Movement
 	carry = $Carrying
+	attack = $Attack
 	$SelectionRing.hide()
 	super._ready()
 	
