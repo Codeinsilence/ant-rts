@@ -2,6 +2,7 @@ class_name Colony extends Node3D
 
 @onready var worker_scene = preload("res://scenes/worker.tscn")
 @onready var palace_scene = preload("res://scenes/palace.tscn")
+@onready var house_scene = preload("res://scenes/house.tscn")
 @onready var group_name = get_groups()[0]
 
 @export var team : String = "none" ##Specify the team name
@@ -15,6 +16,11 @@ class_name Colony extends Node3D
 var food:int = 0 
 var protein:int = 0
 var foliage:int = 0
+
+# Building/ant tracking
+var ants: int = 0
+var houses: int = 0
+var capacity_per_house: int = 10 # going to hardcode this value in colony for now until something better comes up
 
 # Costs for units
 var cost_worker = { "food" : 10,
@@ -38,9 +44,11 @@ func spawn_starter_units():
 	instance.position.y = terrain.height_at(instance.position) + 0.1 # Fix height to just above terrain
 	instance.set_colony(self)
 	world.add_child(instance)
+	_spawn_starting_house() #test for spawning an initial house
 	# Spawn 3 workers
 	for i in range(3):
 		instance.get_node("Spawning").spawn_worker(self)
+		ants += 1
 
 func _ready():
 	spawn_timer = spawn_interval
@@ -88,11 +96,36 @@ func _handle_spawn_timer(delta):
 	spawn_timer -= delta
 	
 	if spawn_timer >= 0: return # abort if timer isn't done
+	if houses * capacity_per_house <= ants: return # abort if not enough houses
 	# If timer is done, spawn units
 	spawn_timer = spawn_interval
 	for member in get_tree().get_nodes_in_group(group_name):
 		if member.has_node("Spawning"):
 			member.get_node("Spawning")._on_spawn_time(self)
+			ants += 1
+
+func _spawn_starting_house():
+	var terrain = $"../NavRegion/TerrainBody"
+	var world = get_parent()
+	var instance : House = house_scene.instantiate()
+	instance.position = position + Vector3(0, 0, 0)
+	var offset = Vector3(0, 0, 0)
+	if(instance.position.x >= 100):
+		offset.x += 10
+		offset.z += 10
+	else:
+		offset.x -= 10
+		offset.z -= 10
+	instance.position += offset
+	instance.position.y = terrain.height_at(instance.position) + 0.1 
+	instance.set_colony(self)
+	world.add_child(instance)
+	houses += 1
+	return
+	
+func _single_ant_killed():
+	ants -= 1
+	return
 
 func _on_leaf_collected():
 	foliage = foliage + 1

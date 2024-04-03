@@ -38,5 +38,3 @@ func remove_from_selected_units():
 
 func decrease_health(amt: float):
 	health -= amt
-	if health <= 0:
-		queue_free()
