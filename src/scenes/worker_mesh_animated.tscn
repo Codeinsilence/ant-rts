@@ -5,20 +5,17 @@
 [node name="AnimMeshInstance3D" instance=ExtResource("1_w4o3e")]
 
 [node name="Skeleton3D" parent="RootNode/\r\nant /skeleton " index="0"]
-bones/1/rotation = Quaternion(0.535508, 0.48739, 0.468525, 0.506129)
-bones/4/rotation = Quaternion(0.892115, 0.141984, 0.428859, 0.00709793)
-bones/5/rotation = Quaternion(0.778109, -1.81075e-08, 0.628129, 1.46105e-08)
-bones/9/rotation = Quaternion(0.849257, -0.419417, -0.182483, 0.263727)
-bones/10/rotation = Quaternion(-0.733753, 0.142047, 0.193528, 0.635592)
-bones/16/rotation = Quaternion(0.0423167, 0.707408, -0.705166, -0.0228908)
-bones/20/rotation = Quaternion(0.871772, 0.0818387, 0.483024, 0.00180285)
-bones/21/rotation = Quaternion(0.739824, 1.66238e-15, 0.672801, -1.41775e-15)
-bones/25/rotation = Quaternion(0.946332, 0.124783, -0.19798, -0.222911)
-bones/26/rotation = Quaternion(0.811793, 0.0664154, -0.363013, 0.452552)
-bones/30/rotation = Quaternion(0.905919, 0.0461217, 0.420894, -0.00555919)
-bones/31/rotation = Quaternion(0.704579, 2.33893e-08, 0.709625, -3.66576e-08)
-bones/35/rotation = Quaternion(0.853446, -0.159547, -0.372669, 0.327554)
-bones/36/rotation = Quaternion(-0.677936, 0.0498158, 0.524892, 0.512259)
-
-[node name="AnimationPlayer" parent="." index="1"]
-speed_scale = 4.0
+bones/1/rotation = Quaternion(0.555876, 0.485975, 0.450466, 0.501907)
+bones/4/rotation = Quaternion(0.891399, 0.0957487, 0.44297, 0.00428526)
+bones/5/rotation = Quaternion(0.770916, -6.5553e-09, 0.636936, 5.30009e-09)
+bones/9/rotation = Quaternion(0.798724, -0.462557, -0.193156, 0.332822)
+bones/10/rotation = Quaternion(-0.717932, 0.138695, 0.198856, 0.652529)
+bones/16/rotation = Quaternion(0.0357171, 0.707772, -0.704922, -0.029467)
+bones/20/rotation = Quaternion(0.876911, 0.0492554, 0.47812, 0.00157487)
+bones/21/rotation = Quaternion(0.748598, 3.16655e-09, 0.663025, -2.75311e-09)
+bones/25/rotation = Quaternion(0.927416, 0.0760291, -0.243005, -0.273986)
+bones/26/rotation = Quaternion(0.785119, 0.0640006, -0.385318, 0.480648)
+bones/30/rotation = Quaternion(0.926308, 0.0541706, 0.37277, -0.00783362)
+bones/31/rotation = Quaternion(0.720723, -4.36594e-08, 0.693223, 6.94986e-08)
+bones/35/rotation = Quaternion(0.855396, -0.146599, -0.372529, 0.328677)
+bones/36/rotation = Quaternion(-0.675901, 0.0496667, 0.526242, 0.513576)
