@@ -42,11 +42,15 @@ func _physics_process(delta):
 		moving = true
 	
 	last_location = location
-	
-
 
 func set_destination(target:Vector3):
 	$Movement.set_destination(target)
 
 func set_moving(moving_bool):
 	moving = moving_bool
+
+func _take_damage(amt: float):
+	decrease_health(amt)
+	if health <= 0:
+		colony._single_ant_killed()
+		queue_free()

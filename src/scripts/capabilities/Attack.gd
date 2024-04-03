@@ -46,7 +46,7 @@ func _deal_damage():
 	if parent.position.distance_to(attack_target.global_position) <= attack_distance:
 		print("attacked")
 		can_attack = false
-		attack_target.decrease_health(damage);
+		attack_target._take_damage(damage);
 		await get_tree().create_timer(rate_of_attack).timeout
 		can_attack= true
 
