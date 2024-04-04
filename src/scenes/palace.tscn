@@ -22,6 +22,7 @@ rings = 16
 ring_segments = 4
 
 [node name="Palace" type="CharacterBody3D"]
+collision_layer = 33
 script = ExtResource("1_bx2lr")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
@@ -37,11 +38,12 @@ surface_material_override/2 = ExtResource("3_kjxvx")
 
 [node name="SelectionRing" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0.07, 0)
+visible = false
 mesh = SubResource("TorusMesh_ugm0x")
 
 [node name="Spawning" type="Node" parent="."]
 script = ExtResource("2_q5l4b")
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-radius = 1.75
-use_3d_avoidance = true
+radius = 1.9
+height = 1.5

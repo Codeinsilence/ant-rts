@@ -37,4 +37,3 @@ func _on_velocity_computed(safe_velocity : Vector3) -> void:
 	look_at(parent.position + safe_velocity) # Face forward
 	parent.velocity = safe_velocity
 	parent.move_and_slide()
-

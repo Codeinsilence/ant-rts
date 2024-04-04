@@ -183,6 +183,29 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
+[node name="Action" type="PanelContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer"]
+layout_mode = 2
+theme = ExtResource("2_l1wnt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Action"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Action/HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Value" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitStats/GridContainer/Action/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "test"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
 [node name="UnitActions" type="PanelContainer" parent="ActionPanel/GridContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2

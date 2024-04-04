@@ -13,6 +13,7 @@ extends Control
 @onready var actions = action_panel.get_node("GridContainer/UnitActions")
 @onready var hud_hp = stat_panel.get_node("GridContainer/Health/HBoxContainer/Value")
 @onready var hud_speed = stat_panel.get_node("GridContainer/Speed/HBoxContainer/Value")
+@onready var hud_action = stat_panel.get_node("GridContainer/Action/HBoxContainer/Value")
 
 var colony = null
 
@@ -46,6 +47,8 @@ func _update_action_panel(unit: Unit):
 		hud_speed.text = str(movement.speed)
 	else:
 		hud_speed.text = "0"
+	hud_action.text = unit.cur_action
+	
 
 func _update_status_bar(colony):
 	if(colony == null): return

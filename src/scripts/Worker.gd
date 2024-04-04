@@ -54,3 +54,21 @@ func _take_damage(amt: float):
 	if health <= 0:
 		colony._single_ant_killed()
 		queue_free()
+
+# Connected to NavAgent's target_reached signal
+# Check my task and update accordingly
+func _on_target_reached():
+	match cur_action:
+		"none":
+			cur_action = "idle"
+		"moving":
+			cur_action = "idle"
+		"harvesting":
+			if carry.move_to_resource() == false:
+				cur_action = "idle"
+		"dropping_off":
+			if carry.target_dropoff == null: # Dropoff target no longer exists?
+				cur_action = "idle"
+			else: # Target still valid - could have moved somehow? - move to it again
+				carry.move_to_dropoff()
+		

@@ -31,7 +31,7 @@ outer_radius = 0.45
 rings = 16
 ring_segments = 4
 
-[node name="collision_ant" type="CharacterBody3D"]
+[node name="Worker" type="CharacterBody3D"]
 collision_layer = 32
 collision_mask = 32
 script = ExtResource("1_b4n5h")
@@ -74,4 +74,5 @@ attack_distance = 1.5
 rate_of_attack = 3.0
 damage = 10.0
 
+[connection signal="target_reached" from="NavAgent" to="." method="_on_target_reached"]
 [connection signal="velocity_computed" from="NavAgent" to="Movement" method="_on_velocity_computed"]

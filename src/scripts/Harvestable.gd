@@ -12,6 +12,7 @@ signal foodCollected
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("harvestables")
 	amount = starting_amount
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
