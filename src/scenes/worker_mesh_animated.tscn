@@ -1,16 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b14arbccb6yta"]
+[gd_scene load_steps=2 format=3 uid="uid://b14arbccb6yta"]
 
 [ext_resource type="PackedScene" uid="uid://3mpvo6vok42i" path="res://assets/models/ant_worker_anim.gltf" id="1_w4o3e"]
-[ext_resource type="Texture2D" uid="uid://n37wui5vax5n" path="res://assets/models/ant.jpg" id="2_i8kyw"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r47cl"]
-albedo_texture = ExtResource("2_i8kyw")
-
-[node name="WorkerMeshAnimated" instance=ExtResource("1_w4o3e")]
-transform = Transform3D(-2.18557e-09, 0, -0.05, 0, 0.05, 0, 0.05, 0, -2.18557e-09, 0, 0, 0)
-
-[node name="Camera" parent="RootNode" index="1"]
-transform = Transform3D(0.14493, 0.204817, 0.968011, -0.816304, 0.577623, -2.98023e-08, -0.559145, -0.790191, 0.250907, -4.4272, 18.634, 15.3597)
+[node name="AnimMeshInstance3D" instance=ExtResource("1_w4o3e")]
 
 [node name="Skeleton3D" parent="RootNode/\r\nant /skeleton " index="0"]
 bones/1/rotation = Quaternion(0.511913, 0.487796, 0.487796, 0.511913)
@@ -27,9 +19,6 @@ bones/30/rotation = Quaternion(0.875426, 0.0423499, 0.481474, -0.00428584)
 bones/31/rotation = Quaternion(0.679213, 7.35598e-08, 0.733941, -6.80747e-08)
 bones/35/rotation = Quaternion(0.853255, -0.172763, -0.370297, 0.324019)
 bones/36/rotation = Quaternion(-0.680546, 0.0500093, 0.523152, 0.510557)
-
-[node name="\r\nant _4" parent="RootNode/\r\nant /skeleton /Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_r47cl")
 
 [node name="AnimationPlayer" parent="." index="1"]
 speed_scale = 4.0
