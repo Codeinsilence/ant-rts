@@ -10,7 +10,7 @@ class_name Colony extends Node3D
 @export var food_initial:int = 50 ##Specify the initial value for the food supply
 @export var protein_initial:int = 0 ##Specify the initial value for the protein supply
 @export var foliage_initial:int = 0 ##Specify the initial value for the foliage supply
-@export var spawn_interval : float = 15.0 ##Specify the time needed for the Palace to spawn a new unit
+@export var spawn_interval : float = 25.0 ##Specify the time needed for the Palace to spawn a new unit
 
 # Resource tracking
 var food:int = 0 
@@ -23,13 +23,13 @@ var houses: int = 0
 var capacity_per_house: int = 10 # going to hardcode this value in colony for now until something better comes up
 
 # Costs for units
-var cost_worker = { "food" : 10,
+var cost_worker = { "food" : 50,
 					"protein" : 0,
 					"foliage" : 0 }
 					
-var cost_palace = { "food" : 50,
-					"protein" : 0,
-					"foliage" : 100 }
+var cost_palace = { "food" : 300,
+					"protein" : 50,
+					"foliage" : 300 }
 
 var start_spawned = false
 

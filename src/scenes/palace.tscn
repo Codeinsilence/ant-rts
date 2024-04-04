@@ -41,3 +41,7 @@ mesh = SubResource("TorusMesh_ugm0x")
 
 [node name="Spawning" type="Node" parent="."]
 script = ExtResource("2_q5l4b")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+radius = 1.75
+use_3d_avoidance = true
