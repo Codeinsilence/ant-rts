@@ -2,7 +2,7 @@ class_name Harvestable extends Node3D
 
 @export var type: String
 @export var radius : float = 1.5
-@export var starting_amount : int = 50
+@export var starting_amount : int = 100
 var amount = 0
 var location: Vector3
 

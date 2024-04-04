@@ -15,6 +15,7 @@ points = PackedVector3Array(-0.110548, 0.0609729, -0.110617, 0.464596, 0.391672,
 
 [node name="leaf" type="StaticBody3D"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+collision_layer = 33
 script = ExtResource("1_23uns")
 type = "foliage"
 
@@ -24,3 +25,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_0jlsh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_kk6to")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+radius = 0.6
+vertices = PackedVector3Array(-0.3, 0, 0.3, 0.3, 0, 0.3, 0.4, 0, -0.4, -0.3, 0, -0.3)

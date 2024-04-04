@@ -100,9 +100,12 @@ func _check_dropoff():
 	# Empty inventory
 	for key in inventory:
 		inventory[key] = 0
-	# stop moving
-	if get_parent().has_node("Movement"):
-		get_parent().get_node("Movement").set_destination(get_parent().position)
+	if auto_drop_off and target_resource != null: # Go get more
+		set_resource_target(target_resource)
+	else: # stop moving
+		if get_parent().has_node("Movement"):
+			get_parent().get_node("Movement").set_destination(get_parent().position)
+	
 
 func _check_resource_collected():
 	if !target_resource: return;
