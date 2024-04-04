@@ -4,6 +4,9 @@
 
 [node name="AnimMeshInstance3D" instance=ExtResource("1_w4o3e")]
 
+[node name="Camera" parent="RootNode" index="1"]
+transform = Transform3D(0.14493, 0.204817, 0.968011, -0.816304, 0.577623, -2.98023e-08, -0.559145, -0.790191, 0.250907, -4.4272, 18.634, 15.3597)
+
 [node name="Skeleton3D" parent="RootNode/\r\nant /skeleton " index="0"]
 bones/1/rotation = Quaternion(0.511913, 0.487796, 0.487796, 0.511913)
 bones/4/rotation = Quaternion(0.891796, 0.200727, 0.405334, 0.0106143)

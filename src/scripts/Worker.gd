@@ -12,7 +12,11 @@ var last_location: Vector3
 var animation_threshold_dist = 0.01 
 
 var ant_mesh: MeshInstance3D
+var ant_mat: StandardMaterial3D
+#var ant_overlay
+
 @onready var ant_texture = preload("res://assets/models/ant.jpg")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,10 +34,11 @@ func _ready():
 	
 	# stupid texture bug fix
 	ant_mesh = get_node("WorkerMeshAnimated/RootNode/\r\nant /skeleton /Skeleton3D/\r\nant _4")
-	var ant_mat := ant_mesh.mesh.surface_get_material(0)
+	
+	ant_mat = ant_mesh.mesh.surface_get_material(0)
+	#ant_mat.resource_local_to_scene
+	
 	ant_mat.albedo_texture = ant_texture
-	#print()
-	#ant_mesh.
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -65,3 +70,15 @@ func _take_damage(amt: float):
 	if health <= 0:
 		colony._single_ant_killed()
 		queue_free()
+
+func set_colony(col : Colony):
+	await super(col)
+	
+	
+	if(colony.team == "player"):
+		ant_mesh.material_overlay = player_material
+		#player_material.emission_energy_multiplier = 2.0
+		#player_material.emission = colony.team_color
+	if(colony.team == "enemy"):
+		ant_mesh.material_overlay = enemy_material
+		#enemy_material.emission = colony.team_color
