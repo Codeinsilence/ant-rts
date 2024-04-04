@@ -18,8 +18,9 @@ var colony : Colony = null
 func _ready():
 	health = max_health
 	# TEMPORARY LINE FOR TESTING HP BAR PLEASE DELETE LATER
-	health = randi_range(5, max_health)
+	# health = randi_range(5, max_health)
 	add_to_group("selectable")
+	cur_action = "none"
 	
 func set_colony(col : Colony):
 	colony = col

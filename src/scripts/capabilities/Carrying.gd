@@ -8,14 +8,13 @@ var inventory : Dictionary = {"food" : 0,
 							  "protein" : 0,
 							  "foliage" : 0}
 @export var inventory_size : int = 10 ## quantity of resources this can hold
-@export var pickup_distance : float = 0.5
+@export var pickup_distance : float = 0.25
 @export var auto_drop_off : bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-	
 func _physics_process(delta):
 	_check_resource_collected()
 	_check_dropoff()
@@ -58,14 +57,22 @@ func add_type_to_inventory(res_type:String, amount:int) -> int:
 	return amount_added
 
 func set_resource_target(resource) -> bool:
+	if resource == null: return false
 	if not resource is Harvestable:
 		print("Error: set_resource_target passed something that wasn't Harvestable")
 		return false
 	target_resource = resource;
+	return true
+
+func move_to_resource() -> bool:
 	if !get_parent().has_node("Movement"):
-		print("Error: set_resource_target could not find parent's Movement")
+		print("Error: move_to_target() could not find parent's Movement")
 		return false
-	get_parent().get_node("Movement").set_destination(resource.position)
+	if target_resource == null:
+		print("Error: move_to_target() target resource is null")
+		return false
+	get_parent().get_node("Movement").set_destination(target_resource.position)
+	get_parent().cur_action = "harvesting"
 	return true
 	
 # Sets target for this unit to try drop off resources
@@ -78,46 +85,10 @@ func set_dropoff_target(t : Unit) -> bool:
 	if !t.has_node("Spawning"):
 		print("Error: set_dropoff_target passed something that wasn't a friendly with Spawning")
 		return false
-	if !get_parent().has_node("Movement"):
-		print("Error: set_dropoff_target could not find parent's Movement")
-		return false
-	get_parent().get_node("Movement").set_destination(t.position)
 	target_dropoff = t
 	return true
-
-# Checks if unit reached the dropoff point.
-# If it has, give resources to colony and empty inventory
-func _check_dropoff():
-	if !target_dropoff: return
-	if inventory_space_remaining() == inventory_size: return
-	if get_parent().position.distance_to(target_dropoff.position) > 4.0: return
 	
-	# Add resource to colony
-	var colony = target_dropoff.colony
-	colony.food += inventory["food"]
-	colony.protein += inventory["protein"]
-	colony.foliage += inventory["foliage"]
-	# Empty inventory
-	for key in inventory:
-		inventory[key] = 0
-	if auto_drop_off and target_resource != null: # Go get more
-		set_resource_target(target_resource)
-	else: # stop moving
-		if get_parent().has_node("Movement"):
-			get_parent().get_node("Movement").set_destination(get_parent().position)
-	
-
-func _check_resource_collected():
-	if !target_resource: return;
-	if inventory_space_remaining() <= 0: return
-	var parent = get_parent()
-	if parent.position.distance_to(target_resource.global_position) >= target_resource.radius + pickup_distance:
-		return
-	# If this point reached, checks passed and resource is in range
-	var amount_added = add_type_to_inventory(target_resource.type, target_resource.amount)
-	target_resource.decrease_amount(amount_added)
-	# auto-drop off if enabled
-	if not auto_drop_off: return
+func find_dropoff_target() -> bool:
 	var colony : Colony = get_parent().colony
 	var best_target = null
 	for node in get_tree().get_nodes_in_group(colony.group_name):
@@ -129,5 +100,68 @@ func _check_resource_collected():
 					best_target = node
 	if best_target != null:
 		set_dropoff_target(best_target)
+		return true
+	else:
+		return false
+	
+func move_to_dropoff() -> bool:
+	if !get_parent().has_node("Movement"):
+		print("Error: move_to_dropoff()) could not find parent's Movement")
+		return false
+	if target_dropoff == null:
+		print("Error: move_to_dropoff() target dropoff is null")
+		return false
+	get_parent().get_node("Movement").set_destination(target_dropoff.position)
+	get_parent().cur_action = "dropping_off"
+	return true
+
+# Checks if unit reached the dropoff point.
+# If it has, give resources to colony and empty inventory
+func _check_dropoff():
+	if !target_dropoff: return
+	if inventory_space_remaining() == inventory_size: return
+	if get_parent().position.distance_to(target_dropoff.position) > 2.3 + pickup_distance: return
+	
+	# Add resource to colony
+	var colony = target_dropoff.colony
+	colony.food += inventory["food"]
+	colony.protein += inventory["protein"]
+	colony.foliage += inventory["foliage"]
+	# Empty inventory
+	for key in inventory:
+		inventory[key] = 0
+	if auto_drop_off and target_resource != null: # Go get more
+		move_to_resource()
+	else: # stop moving
+		if get_parent().has_node("Movement"):
+			get_parent().get_node("Movement").set_destination(get_parent().position)
+		get_parent().cur_action = "idle"
+	
+
+func _check_resource_collected():
+	var parent = get_parent()
+	# If target resource is gone, set to idle and abort
+	if !target_resource:
+		if parent.cur_action == "harvesting": parent.cur_action = "idle"
+		return
+	if parent.cur_action == "harvesting" and inventory_space_remaining() <= 0:
+		if find_dropoff_target(): move_to_dropoff()
+		else: parent.cur_action = "idle"
+		return
+	# If too far from resource, return (keep moving)
+	if parent.position.distance_to(target_resource.global_position) >= target_resource.radius + pickup_distance:
+		return
+	# If this point reached, checks passed and resource is in range
+	var amount_added = add_type_to_inventory(target_resource.type, target_resource.amount)
+	target_resource.decrease_amount(amount_added)
+	# auto-drop off if enabled
+	if not auto_drop_off:
+		parent.cur_action = "idle"
+		return
+	if find_dropoff_target() == false:
+		parent.cur_action = "idle"
+		return
+	else:
+		move_to_dropoff()
 
 	return;

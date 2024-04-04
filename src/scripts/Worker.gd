@@ -82,3 +82,20 @@ func set_colony(col : Colony):
 	if(colony.team == "enemy"):
 		ant_mesh.material_overlay = enemy_material
 		#enemy_material.emission = colony.team_color
+# Connected to NavAgent's target_reached signal
+# Check my task and update accordingly
+func _on_target_reached():
+	match cur_action:
+		"none":
+			cur_action = "idle"
+		"moving":
+			cur_action = "idle"
+		"harvesting":
+			if carry.move_to_resource() == false:
+				cur_action = "idle"
+		"dropping_off":
+			if carry.target_dropoff == null: # Dropoff target no longer exists?
+				cur_action = "idle"
+			else: # Target still valid - could have moved somehow? - move to it again
+				carry.move_to_dropoff()
+		

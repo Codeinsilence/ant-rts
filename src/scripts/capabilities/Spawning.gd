@@ -32,6 +32,7 @@ func spawn_worker(colony):
 	# Make it walk a little farther
 	var dest = get_parent().position + 3.0 * spawn_offset
 	new_worker.set_destination(dest)
+	new_worker.cur_action = "idle"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
