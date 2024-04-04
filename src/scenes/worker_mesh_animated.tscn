@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b14arbccb6yta"]
+[gd_scene load_steps=2 format=3 uid="uid://b14arbccb6yta"]
 
 [ext_resource type="PackedScene" uid="uid://3mpvo6vok42i" path="res://assets/models/ant_worker_anim.gltf" id="1_w4o3e"]
-[ext_resource type="Script" path="res://scripts/worker_mesh_animated.gd" id="2_tp6bl"]
 
 [node name="AnimMeshInstance3D" instance=ExtResource("1_w4o3e")]
-script = ExtResource("2_tp6bl")
 
 [node name="Skeleton3D" parent="RootNode/\r\nant /skeleton " index="0"]
 bones/1/rotation = Quaternion(0.511913, 0.487796, 0.487796, 0.511913)
