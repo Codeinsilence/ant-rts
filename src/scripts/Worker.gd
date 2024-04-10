@@ -98,4 +98,3 @@ func _on_target_reached():
 				cur_action = "idle"
 			else: # Target still valid - could have moved somehow? - move to it again
 				carry.move_to_dropoff()
-		

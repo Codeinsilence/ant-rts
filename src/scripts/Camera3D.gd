@@ -1,5 +1,11 @@
 extends Camera3D
 
+# Preload cursor images and create timer for cursor transitions
+@onready var cursor_fb_timer := Timer.new()
+var cursor_default = preload("res://assets/cursors/cursor-pointer-1.png")
+var cursor_select = preload("res://assets/cursors/cursor-target-10.png")
+
+
 var PIVOT: Node3D;
 
 @export var speed: float = 4.0;
@@ -16,6 +22,14 @@ var mouse_is_down : bool
 func _ready():
 	PIVOT = get_parent();
 	mouse_is_down = false
+	
+	cursor_fb_timer.one_shot = true
+	cursor_fb_timer.connect("timeout", _reset_cursor)
+	add_child(cursor_fb_timer)
+	
+# Resets the cursor to the default image
+func _reset_cursor():
+	DisplayServer.cursor_set_custom_image(cursor_default)
 
 func _process(delta):
 	rot_quat = Quaternion(0,sin(rotation.y/2),0,cos(rotation.y/2)).normalized();
@@ -58,9 +72,19 @@ func mouse_selection():
 	var start = project_ray_origin(mouse_pos);
 	var end = project_position(mouse_pos, ray_length);
 	var result = worldspace.intersect_ray(PhysicsRayQueryParameters3D.create(start, end));
+	#if(result.collider)
+	#if(result.collider == null):
+	#	return result;
+	if(result.size() == 0):
+		return result;
+	
+	DisplayServer.cursor_set_custom_image(cursor_select)
+	cursor_fb_timer.start(0.1)
+	
+	
 	return result;
 
-## Single unit selection
+## Single unit selection (left click)
 func left_selection():
 	var result = mouse_selection()
 	# If not holding shift, clear out selected group first

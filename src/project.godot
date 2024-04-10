@@ -21,6 +21,7 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
+mouse_cursor/custom_image="res://assets/cursors/cursor-pointer-1.png"
 
 [gui]
 
