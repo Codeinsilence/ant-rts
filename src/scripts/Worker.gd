@@ -17,7 +17,6 @@ var ant_mat: StandardMaterial3D
 
 @onready var ant_texture = preload("res://assets/models/ant.jpg")
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	health = 100.0;
@@ -27,7 +26,7 @@ func _ready():
 	attack = $Attack
 	$SelectionRing.hide()
 	super._ready()
-	
+	portrait = preload("res://assets/portraits/ant_portrait.png")
 	# Animation controls
 	last_location = location
 	animation_player = get_node("WorkerMeshAnimated/AnimationPlayer")
@@ -93,7 +92,7 @@ func _on_target_reached():
 		"harvesting":
 			if carry.move_to_resource() == false:
 				cur_action = "idle"
-		"dropping_off":
+		"Dropping off":
 			if carry.target_dropoff == null: # Dropoff target no longer exists?
 				cur_action = "idle"
 			else: # Target still valid - could have moved somehow? - move to it again

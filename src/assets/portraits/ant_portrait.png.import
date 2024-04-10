@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5y2ph1evm5vt"
-path="res://.godot/imported/unknownPortrait.png-614a0a954651ea751b2be6cf4ea26f66.ctex"
+uid="uid://dslct6vylcywk"
+path="res://.godot/imported/ant_portrait.png-946fd3178f3badac0a71a13c3466c313.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unknownPortrait.png"
-dest_files=["res://.godot/imported/unknownPortrait.png-614a0a954651ea751b2be6cf4ea26f66.ctex"]
+source_file="res://assets/portraits/ant_portrait.png"
+dest_files=["res://.godot/imported/ant_portrait.png-946fd3178f3badac0a71a13c3466c313.ctex"]
 
 [params]
 
