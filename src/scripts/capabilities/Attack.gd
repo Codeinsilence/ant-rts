@@ -27,7 +27,7 @@ func _physics_process(delta):
 	pass
 
 func _set_attack_target(unit: Unit) -> bool:
-	if not unit is Worker:
+	if not unit is Unit:
 		print("Unit is not combatable.")
 		return false
 	attack_target = unit;
@@ -43,7 +43,7 @@ func _set_attack_mode(mode : bool):
 
 func _deal_damage():
 	var parent = get_parent()
-	if parent.position.distance_to(attack_target.global_position) <= attack_distance:
+	if parent.position.distance_to(attack_target.global_position) <= (attack_target.radius + attack_distance):
 		print("attacked")
 		can_attack = false
 		attack_target._take_damage(damage);

@@ -31,6 +31,10 @@ var cost_palace = { "food" : 300,
 					"protein" : 50,
 					"foliage" : 300 }
 
+var cost_house = { "food" : 0,
+				   "protein" : 20,
+				   "foliage" : 100 }
+				
 var start_spawned = false
 
 var spawn_timer : float
@@ -125,6 +129,10 @@ func _spawn_starting_house():
 	
 func _single_ant_killed():
 	ants -= 1
+	return
+
+func single_house_destroyed():
+	houses -= 1
 	return
 
 func _on_leaf_collected():

@@ -3,8 +3,7 @@ class_name Worker extends Unit
 var move : Movement
 var carry : Carrying
 var attack : Attack
-var step = 0.01
-var t = 0.0
+var radius: float = 1.5
 var moving = false
 var animation_player: AnimationPlayer
 

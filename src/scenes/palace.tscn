@@ -24,6 +24,7 @@ ring_segments = 4
 [node name="Palace" type="CharacterBody3D"]
 collision_layer = 33
 script = ExtResource("1_bx2lr")
+max_health = 5000
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
