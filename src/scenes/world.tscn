@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bdcix7btpgesh"]
+[gd_scene load_steps=21 format=3 uid="uid://bdcix7btpgesh"]
 
 [ext_resource type="Script" path="res://scripts/Camera3D.gd" id="1_3prb5"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gq715"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://p1gunorovsji" path="res://assets/dirt_normalmap.png" id="8_p2mex"]
 [ext_resource type="Script" path="res://scripts/Colony.gd" id="9_l2lnn"]
 [ext_resource type="Script" path="res://scripts/AI_Manager.gd" id="12_5tjk0"]
+[ext_resource type="AudioStream" uid="uid://dlko6kcwlaos0" path="res://assets/audio/bg.mp3" id="13_r8hdv"]
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_3rotf"]
 
@@ -134,4 +135,9 @@ transform = Transform3D(5, 2.98023e-08, -1.49012e-07, -2.98023e-07, 0.5, 0, 1.49
 size = Vector3(60, 50, 60)
 material = SubResource("FogMaterial_vw77s")
 
+[node name="BackgroundAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_r8hdv")
+autoplay = true
+
 [connection signal="ready" from="PlayerColony" to="hud" method="_on_player_colony_ready"]
+[connection signal="finished" from="BackgroundAudio" to="." method="_on_background_audio_finished"]

@@ -15,7 +15,7 @@ var minimum_resources = 10
 var rng = RandomNumberGenerator.new()
 
 func _ready():
-	pass # Replace with function body.
+	pass
 
 func _physics_process(delta):
 	# Had to move this here to stop errors with navigation before NavMap exists
@@ -28,6 +28,7 @@ func _physics_process(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	_respawn_resources()
+
 	
 func _spawn_resources():
 	var terrain = $"NavRegion/TerrainBody"
@@ -93,3 +94,8 @@ func _terrain_at(position: Vector3):
 	if result.collider.name == "TerrainBody":
 		return true
 	return false
+
+
+func _on_background_audio_finished():
+	var player = get_node("BackgroundAudio")
+	player.play(0)

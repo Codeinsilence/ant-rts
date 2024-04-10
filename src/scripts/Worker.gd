@@ -7,6 +7,7 @@ var step = 0.01
 var t = 0.0
 var moving = false
 var animation_player: AnimationPlayer
+var audio_player: AudioStreamPlayer3D
 
 var last_location: Vector3
 var animation_threshold_dist = 0.01 
@@ -31,6 +32,8 @@ func _ready():
 	last_location = location
 	animation_player = get_node("WorkerMeshAnimated/AnimationPlayer")
 	
+	audio_player = get_node("AudioStreamPlayer3D")
+	
 	# stupid texture bug fix
 	ant_mesh = get_node("WorkerMeshAnimated/RootNode/\r\nant /skeleton /Skeleton3D/\r\nant _4")
 	
@@ -44,6 +47,9 @@ func _ready():
 func _process(delta):
 	if(moving == true):
 		animation_player.current_animation = "C4D Animation Take"
+		if(audio_player.playing == false):
+			audio_player.play()
+		
 	if(moving == false):
 		animation_player.current_animation = ""
 
