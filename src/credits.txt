@@ -3,3 +3,6 @@ Credits for assets we found online.
 
 Ant model + animations: 
 https://www.turbosquid.com/3d-models/ant-anim_run-856094
+
+Cursors:
+https://megabyte-games.itch.io/mouse-cursor-pack

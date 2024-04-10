@@ -1,5 +1,13 @@
 extends Camera3D
 
+# Preload cursor images and create timer for cursor transitions
+@onready var cursor_fb_timer := Timer.new()
+@onready var cursor_lifespan = 0.15
+var cursor_default = preload("res://assets/cursors/cursor-pointer-1.png")
+var cursor_select = preload("res://assets/cursors/cursor-pointer-18.png")
+var cursor_harvest = preload("res://assets/cursors/cursor-target-6.png")
+var cursor_move = preload("res://assets/cursors/cursor-target-9.png")
+
 var PIVOT: Node3D;
 
 @export var speed: float = 4.0;
@@ -16,6 +24,14 @@ var mouse_is_down : bool
 func _ready():
 	PIVOT = get_parent();
 	mouse_is_down = false
+	
+	cursor_fb_timer.one_shot = true
+	cursor_fb_timer.connect("timeout", _reset_cursor)
+	add_child(cursor_fb_timer)
+	
+# Resets the cursor to the default image
+func _reset_cursor():
+	DisplayServer.cursor_set_custom_image(cursor_default)
 
 func _process(delta):
 	rot_quat = Quaternion(0,sin(rotation.y/2),0,cos(rotation.y/2)).normalized();
@@ -57,17 +73,20 @@ func mouse_selection():
 	var worldspace = get_world_3d().direct_space_state;
 	var start = project_ray_origin(mouse_pos);
 	var end = project_position(mouse_pos, ray_length);
-	var result = worldspace.intersect_ray(PhysicsRayQueryParameters3D.create(start, end));
+	var result = worldspace.intersect_ray(PhysicsRayQueryParameters3D.create(start, end));	
 	return result;
 
-## Single unit selection
+## Single unit selection (left click)
 func left_selection():
 	var result = mouse_selection()
+	
 	# If not holding shift, clear out selected group first
 	if not Input.is_action_pressed("shift"):
 		for member in get_tree().get_nodes_in_group("selected_units"):
 			member.remove_from_selected_units()
 	if(result and result.collider.has_method("add_to_selected_units")):
+		DisplayServer.cursor_set_custom_image(cursor_select)
+		cursor_fb_timer.start(cursor_lifespan)
 		result.collider.add_to_selected_units();
 
 ## Issues commands on selected group
@@ -86,6 +105,9 @@ func right_selection():
 				member.set_moving(true)
 				special_command_issued = true
 				member.cur_action = "harvesting"
+				# update cursor
+				DisplayServer.cursor_set_custom_image(cursor_harvest)
+				cursor_fb_timer.start(cursor_lifespan)
 	# Resource drop off command
 	elif result.collider.has_node("Spawning") and result.collider.is_in_group("player"):
 		
@@ -95,7 +117,7 @@ func right_selection():
 					member.carry.set_dropoff_target(result.collider)
 					member.carry.move_to_dropoff()
 					special_command_issued = true
-					member.cur_action = "dropping_off"
+					member.cur_action = "Dropping off"
 	
 	elif result.collider.has_node("Movement") and result.collider.is_in_group("enemy"):
 		for member in get_tree().get_nodes_in_group("selected_units"):
@@ -114,6 +136,9 @@ func right_selection():
 				if member.has_node("Attack"):
 					member.attack._set_attack_mode(false)
 				member.cur_action = "moving"
+				# cursor update
+				DisplayServer.cursor_set_custom_image(cursor_move)
+				cursor_fb_timer.start(cursor_lifespan)
 
 ## Drawing a selection box
 func box_selection(corner1, corner2):

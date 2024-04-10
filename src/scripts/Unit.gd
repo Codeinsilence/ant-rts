@@ -8,6 +8,8 @@ var health : int 			 ## Current health
 
 @export var cur_action : String ##the current action the unit is trying to perform
 
+var portrait
+
 # FOR APPLYING TEAM COLORS TO MODELS
 var player_material = preload("res://shaders/player.tres")
 var enemy_material = preload("res://shaders/enemy.tres")

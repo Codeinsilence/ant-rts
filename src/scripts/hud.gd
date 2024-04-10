@@ -8,12 +8,15 @@ extends Control
 @onready var hud_foliage = status_bar.get_node("GridContainer/Foliage/HBoxContainer/Value")
 
 @onready var action_panel = get_node("ActionPanel")
-@onready var portrait = action_panel.get_node("GridContainer/UnitPortrait")
 @onready var stat_panel = action_panel.get_node("GridContainer/UnitStats")
 @onready var actions = action_panel.get_node("GridContainer/UnitActions")
 @onready var hud_hp = stat_panel.get_node("GridContainer/Health/HBoxContainer/Value")
 @onready var hud_speed = stat_panel.get_node("GridContainer/Speed/HBoxContainer/Value")
 @onready var hud_action = stat_panel.get_node("GridContainer/Action/HBoxContainer/Value")
+@onready var hud_portrait = action_panel.get_node("GridContainer/UnitPortraitBG/UnitPortrait")
+@onready var hud_portrait_bg = action_panel.get_node("GridContainer/UnitPortraitBG")
+
+@onready var portrait_default = preload("res://assets/portraits/unknownPortrait.png")
 
 var colony = null
 
@@ -48,6 +51,16 @@ func _update_action_panel(unit: Unit):
 	else:
 		hud_speed.text = "0"
 	hud_action.text = unit.cur_action
+	
+	#hud_portrait.texture = unit.portrait
+	
+	if(unit.portrait != null):
+			hud_portrait.texture = unit.portrait
+			hud_portrait_bg.material.set("shader_param/bg_color", unit.colony.team_color);
+	else:
+		hud_portrait.texture = portrait_default
+		hud_portrait_bg.material.set("shader_param/bg_color", Vector4(0,0,0,1));
+		
 	
 
 func _update_status_bar(colony):

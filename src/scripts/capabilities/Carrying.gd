@@ -112,7 +112,7 @@ func move_to_dropoff() -> bool:
 		print("Error: move_to_dropoff() target dropoff is null")
 		return false
 	get_parent().get_node("Movement").set_destination(target_dropoff.position)
-	get_parent().cur_action = "dropping_off"
+	get_parent().cur_action = "Dropping off"
 	return true
 
 # Checks if unit reached the dropoff point.

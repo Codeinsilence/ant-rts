@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5y2ph1evm5vt"
-path="res://.godot/imported/unknownPortrait.png-614a0a954651ea751b2be6cf4ea26f66.ctex"
+uid="uid://cwu0lkvwkohwf"
+path="res://.godot/imported/cursor-pointer-17.png-303e271e1bbc970cbda0b70f29f1beb7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unknownPortrait.png"
-dest_files=["res://.godot/imported/unknownPortrait.png-614a0a954651ea751b2be6cf4ea26f66.ctex"]
+source_file="res://assets/cursors/cursor-pointer-17.png"
+dest_files=["res://.godot/imported/cursor-pointer-17.png-303e271e1bbc970cbda0b70f29f1beb7.ctex"]
 
 [params]
 
