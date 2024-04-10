@@ -106,7 +106,7 @@ shape = SubResource("HeightMapShape3D_7i73e")
 script = ExtResource("7_npo62")
 
 [node name="PlayerColony" type="Node3D" parent="." groups=["player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 16, 16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.8359, 16, 23.596)
 script = ExtResource("9_l2lnn")
 team = "player"
 team_color = Color(0.298039, 0.568627, 0.776471, 1)
@@ -114,7 +114,7 @@ protein_initial = 15
 foliage_initial = 10
 
 [node name="EnemyColony" type="Node3D" parent="." groups=["enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111, 16, 111)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.32, 16, 98.7556)
 script = ExtResource("9_l2lnn")
 team = "enemy"
 team_color = Color(1, 0.278431, 0.290196, 1)
