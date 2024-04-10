@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6hbt7vpoa6d2"]
+[gd_scene load_steps=5 format=3 uid="uid://kxnpk8gxncgi"]
 
-[ext_resource type="ArrayMesh" uid="uid://b04vr24ro2wma" path="res://assets/models/ant_house.obj" id="1_b34xb"]
-[ext_resource type="Script" path="res://scripts/House.gd" id="1_q48jx"]
+[ext_resource type="ArrayMesh" uid="uid://b04vr24ro2wma" path="res://assets/models/ant_house.obj" id="2_gxce3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvaca"]
 resource_local_to_scene = true
@@ -18,14 +17,12 @@ ring_segments = 4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eo3po"]
 
-[node name="House" type="CharacterBody3D"]
+[node name="House" type="Area3D"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
-script = ExtResource("1_q48jx")
-max_health = 300
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-mesh = ExtResource("1_b34xb")
+mesh = ExtResource("2_gxce3")
 
 [node name="SelectionRing" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0.07, 0)
@@ -35,7 +32,3 @@ mesh = SubResource("TorusMesh_o1sv2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_eo3po")
-
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-radius = 1.2
-height = 1.5

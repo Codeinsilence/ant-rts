@@ -4,5 +4,8 @@ Credits for assets we found online.
 Ant model + animations: 
 https://www.turbosquid.com/3d-models/ant-anim_run-856094
 
+Leaf model + texture:
+https://www.turbosquid.com/3d-models/leaves-580785
+
 Cursors:
 https://megabyte-games.itch.io/mouse-cursor-pack

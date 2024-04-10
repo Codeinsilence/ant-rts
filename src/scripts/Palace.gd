@@ -2,6 +2,8 @@ class_name Palace extends Unit
 
 var spawn : Spawning
 var palace_mesh: MeshInstance3D
+var radius : float = 4.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
@@ -34,3 +36,12 @@ func set_colony(col : Colony):
 		palace_mesh.set_surface_override_material(2, enemy_material)
 		enemy_material.albedo_color = colony.team_color
 		enemy_material.emission = colony.team_color * 1.5
+
+func _take_damage(amt: float):
+	decrease_health(amt)
+	if health <= 0:
+		if colony.team == "player":
+			print("You Lose!")
+		else:
+			print("You Win!")
+		queue_free()

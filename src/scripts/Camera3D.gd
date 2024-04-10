@@ -21,6 +21,8 @@ var ray_length = 1000
 var mouse_down_pos : Vector2;
 var mouse_is_down : bool
 
+var building_mode : bool = false
+
 func _ready():
 	PIVOT = get_parent();
 	mouse_is_down = false
@@ -48,6 +50,10 @@ func _process(delta):
 	if(Input.is_action_just_released("zoom_out")):
 		size = min(size + 5, max_size)
 	
+	if building_mode:
+		for member in get_tree().get_nodes_in_group("selected_units"):
+			member.remove_from_selected_units()
+		return
 	# Mouse selection handling
 	mouse_pos = get_viewport().get_mouse_position();
 	if(Input.is_action_just_pressed("left_click")):
@@ -119,14 +125,14 @@ func right_selection():
 					special_command_issued = true
 					member.cur_action = "Dropping off"
 	
-	elif result.collider.has_node("Movement") and result.collider.is_in_group("enemy"):
+	elif result.collider.is_in_group("enemy"): #attacks both buildings and ants 
 		for member in get_tree().get_nodes_in_group("selected_units"):
 			if member.has_node("Attack"):
 				member.attack._set_attack_target(result.collider)
 				member.attack._set_attack_mode(true)
 				special_command_issued = true
 				member.cur_action = "attacking"
-	
+				
 	# Move to location
 	if special_command_issued : return
 	for member in get_tree().get_nodes_in_group("selected_units"):

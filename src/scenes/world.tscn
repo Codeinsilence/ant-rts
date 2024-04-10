@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bdcix7btpgesh"]
+[gd_scene load_steps=22 format=3 uid="uid://bdcix7btpgesh"]
 
 [ext_resource type="Script" path="res://scripts/Camera3D.gd" id="1_3prb5"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_gq715"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://p1gunorovsji" path="res://assets/dirt_normalmap.png" id="8_p2mex"]
 [ext_resource type="Script" path="res://scripts/Colony.gd" id="9_l2lnn"]
 [ext_resource type="Script" path="res://scripts/AI_Manager.gd" id="12_5tjk0"]
+[ext_resource type="Script" path="res://scripts/capabilities/Building.gd" id="12_p2n5u"]
+[ext_resource type="PackedScene" uid="uid://kxnpk8gxncgi" path="res://scenes/house_area.tscn" id="13_4attf"]
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_3rotf"]
 
@@ -112,6 +114,10 @@ team = "player"
 team_color = Color(0.298039, 0.568627, 0.776471, 1)
 protein_initial = 15
 foliage_initial = 10
+
+[node name="Building" type="Node" parent="PlayerColony"]
+script = ExtResource("12_p2n5u")
+house = ExtResource("13_4attf")
 
 [node name="EnemyColony" type="Node3D" parent="." groups=["enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.32, 16, 98.7556)
