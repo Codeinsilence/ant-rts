@@ -56,10 +56,10 @@ func _update_action_panel(unit: Unit):
 	
 	if(unit.portrait != null):
 			hud_portrait.texture = unit.portrait
-			hud_portrait_bg.material.set("shader_param/bg_color", unit.colony.team_color);
+			hud_portrait_bg.material.set("shader_parameter/bg_color", unit.colony.team_color);
 	else:
 		hud_portrait.texture = portrait_default
-		hud_portrait_bg.material.set("shader_param/bg_color", Vector4(0,0,0,1));
+		hud_portrait_bg.material.set("shader_parameter/bg_color", Vector4(0,0,0,1));
 		
 	
 
