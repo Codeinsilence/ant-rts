@@ -28,13 +28,11 @@ func set_colony(col : Colony):
 	
 	if(colony.team == "player"):
 		palace_mesh.set_surface_override_material(2, player_material)
-		player_material.albedo_color = colony.team_color
 		player_material.emission = colony.team_color * 1.5
 		#player_material.emission_
 		
 	if(colony.team == "enemy"):
 		palace_mesh.set_surface_override_material(2, enemy_material)
-		enemy_material.albedo_color = colony.team_color
 		enemy_material.emission = colony.team_color * 1.5
 
 func _take_damage(amt: float):

@@ -1,11 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhhfw2mybla5l"]
+[gd_scene load_steps=13 format=3 uid="uid://dhhfw2mybla5l"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_cwn8g"]
 [ext_resource type="Theme" uid="uid://drrq3u28ywljf" path="res://themes/infoPanel.tres" id="2_l1wnt"]
 [ext_resource type="Theme" uid="uid://cgo8x8uw2m2na" path="res://themes/hud.tres" id="2_lyc21"]
 [ext_resource type="Texture2D" uid="uid://cvvh0fp2p7mvm" path="res://assets/portraits/portrait_bg.png" id="4_3ahun"]
+[ext_resource type="Texture2D" uid="uid://dmhecq7uwtd0g" path="res://assets/icons/icon_food.png" id="4_4kilh"]
 [ext_resource type="Texture2D" uid="uid://b5y2ph1evm5vt" path="res://assets/portraits/unknownPortrait.png" id="4_smo6i"]
+[ext_resource type="Texture2D" uid="uid://cl8yvkxkgn7wu" path="res://assets/icons/icon_protein.png" id="5_21ghf"]
 [ext_resource type="Shader" path="res://shaders/portrait.gdshader" id="5_bjhen"]
+[ext_resource type="Texture2D" uid="uid://dy8nvtdbx8qa5" path="res://assets/icons/icon_foliage.png" id="6_bbu17"]
+[ext_resource type="Texture2D" uid="uid://dbltljho7i6ug" path="res://assets/icons/icon_house.png" id="7_5ecu2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqf4j"]
 bg_color = Color(0.486275, 0.231373, 0, 1)
@@ -40,7 +44,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vqf4j")
 
 [node name="GridContainer" type="GridContainer" parent="StatusBar"]
 layout_mode = 2
-columns = 3
+columns = 4
 
 [node name="Food" type="PanelContainer" parent="StatusBar/GridContainer"]
 layout_mode = 2
@@ -48,15 +52,14 @@ theme = ExtResource("2_l1wnt")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/GridContainer/Food"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="Label" type="RichTextLabel" parent="StatusBar/GridContainer/Food/HBoxContainer"]
-clip_contents = false
+[node name="TextureRect" type="TextureRect" parent="StatusBar/GridContainer/Food/HBoxContainer"]
 layout_mode = 2
-bbcode_enabled = true
-text = "[b]Food"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
+texture = ExtResource("4_4kilh")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="Value" type="RichTextLabel" parent="StatusBar/GridContainer/Food/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
@@ -73,14 +76,11 @@ theme = ExtResource("2_l1wnt")
 [node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/GridContainer/Protein"]
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="StatusBar/GridContainer/Protein/HBoxContainer"]
-clip_contents = false
+[node name="TextureRect" type="TextureRect" parent="StatusBar/GridContainer/Protein/HBoxContainer"]
 layout_mode = 2
-bbcode_enabled = true
-text = "[b]Protein"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
+texture = ExtResource("5_21ghf")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="Value" type="RichTextLabel" parent="StatusBar/GridContainer/Protein/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
@@ -97,19 +97,37 @@ theme = ExtResource("2_l1wnt")
 [node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/GridContainer/Foliage"]
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="StatusBar/GridContainer/Foliage/HBoxContainer"]
-clip_contents = false
+[node name="TextureRect" type="TextureRect" parent="StatusBar/GridContainer/Foliage/HBoxContainer"]
 layout_mode = 2
-bbcode_enabled = true
-text = "[b]Foliage"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
+texture = ExtResource("6_bbu17")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="Value" type="RichTextLabel" parent="StatusBar/GridContainer/Foliage/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Capacity" type="PanelContainer" parent="StatusBar/GridContainer"]
+layout_mode = 2
+theme = ExtResource("2_l1wnt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/GridContainer/Capacity"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="StatusBar/GridContainer/Capacity/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_5ecu2")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Value" type="RichTextLabel" parent="StatusBar/GridContainer/Capacity/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "0/0"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -229,3 +247,76 @@ autowrap_mode = 0
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme = ExtResource("2_l1wnt")
+
+[node name="InventoryContainer" type="VBoxContainer" parent="ActionPanel/GridContainer/UnitActions"]
+layout_mode = 2
+
+[node name="Food" type="PanelContainer" parent="ActionPanel/GridContainer/UnitActions/InventoryContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_l1wnt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActionPanel/GridContainer/UnitActions/InventoryContainer/Food"]
+custom_minimum_size = Vector2(64, 19)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ActionPanel/GridContainer/UnitActions/InventoryContainer/Food/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_4kilh")
+expand_mode = 2
+
+[node name="Value" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitActions/InventoryContainer/Food/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Protein" type="PanelContainer" parent="ActionPanel/GridContainer/UnitActions/InventoryContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_l1wnt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActionPanel/GridContainer/UnitActions/InventoryContainer/Protein"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ActionPanel/GridContainer/UnitActions/InventoryContainer/Protein/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_21ghf")
+expand_mode = 2
+
+[node name="Value" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitActions/InventoryContainer/Protein/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Foliage" type="PanelContainer" parent="ActionPanel/GridContainer/UnitActions/InventoryContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_l1wnt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActionPanel/GridContainer/UnitActions/InventoryContainer/Foliage"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ActionPanel/GridContainer/UnitActions/InventoryContainer/Foliage/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_bbu17")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Value" type="RichTextLabel" parent="ActionPanel/GridContainer/UnitActions/InventoryContainer/Foliage/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
