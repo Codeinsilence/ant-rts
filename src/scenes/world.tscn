@@ -124,6 +124,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.32, 16, 98.7556)
 script = ExtResource("9_l2lnn")
 team = "enemy"
 team_color = Color(1, 0.278431, 0.290196, 1)
+capacity_per_house = 50
 
 [node name="AI_Manager" type="Node3D" parent="EnemyColony"]
 script = ExtResource("12_5tjk0")

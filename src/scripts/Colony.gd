@@ -20,7 +20,7 @@ var foliage:int = 0
 # Building/ant tracking
 var ants: int = 0
 var houses: int = 0
-var capacity_per_house: int = 30 # going to hardcode this value in colony for now until something better comes up
+@export var capacity_per_house: int = 10 # going to hardcode this value in colony for now until something better comes up
 
 # Costs for units
 var cost_worker = { "food" : 50,

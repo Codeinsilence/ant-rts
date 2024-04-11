@@ -24,6 +24,9 @@ func _process(delta):
 	
 func _physics_process(delta):
 	if in_patrol_mode:
+		if not get_parent().cur_action == "patrolling":
+			in_patrol_mode = false
+			return
 		target_look_cooldown -= delta
 		if target_look_cooldown <= 0:
 			look_for_target()
@@ -32,7 +35,7 @@ func _physics_process(delta):
 			_update_attack_target_position()
 			if can_attack: _deal_damage()
 		else:
-			set_patrol_target(patrol_target)
+			get_parent().get_node("Movement").set_destination(patrol_target)
 	elif in_attack_mode:
 		if _check_valid_target():
 			_update_attack_target_position();

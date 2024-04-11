@@ -18,7 +18,7 @@ var ant_mat: StandardMaterial3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	health = 100.0;
+	health = 50.0;
 	location = self.global_position;
 	move = $Movement
 	carry = $Carrying

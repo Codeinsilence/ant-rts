@@ -22,6 +22,7 @@ var mouse_down_pos : Vector2;
 var mouse_is_down : bool
 
 var building_mode : bool = false
+var attack_move : bool = false
 
 func _ready():
 	PIVOT = get_parent();
@@ -116,7 +117,6 @@ func right_selection():
 				cursor_fb_timer.start(cursor_lifespan)
 	# Resource drop off command
 	elif result.collider.has_node("Spawning") and result.collider.is_in_group("player"):
-		
 		for member in get_tree().get_nodes_in_group("selected_units"):
 			if member.has_node("Carrying"):
 				if member.carry.inventory_space_remaining() < member.carry.inventory_size:
@@ -124,7 +124,7 @@ func right_selection():
 					member.carry.move_to_dropoff()
 					special_command_issued = true
 					member.cur_action = "Dropping off"
-	
+	# Attack
 	elif result.collider.is_in_group("enemy"): #attacks both buildings and ants 
 		for member in get_tree().get_nodes_in_group("selected_units"):
 			if member.has_node("Attack"):
@@ -132,7 +132,12 @@ func right_selection():
 				member.attack._set_attack_mode(true)
 				special_command_issued = true
 				member.cur_action = "attacking"
-				
+	# Patrol
+	elif Input.is_action_pressed("shift"):
+		for member in get_tree().get_nodes_in_group("selected_units"):
+			if member.has_node("Attack") and member.is_in_group("player"):
+				member.get_node("Attack").set_patrol_target(result.position)
+				special_command_issued = true
 	# Move to location
 	if special_command_issued : return
 	for member in get_tree().get_nodes_in_group("selected_units"):

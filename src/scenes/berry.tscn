@@ -31,3 +31,6 @@ shape = SubResource("BoxShape3D_r2bsy")
 
 [node name="CollisionCap" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_j8qvg")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+radius = 0.7

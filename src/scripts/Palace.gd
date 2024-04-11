@@ -7,7 +7,7 @@ var radius : float = 4.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
-	health = 5000
+	health = 1000
 	if has_node("Spawning"): 
 		spawn = $Spawning
 
