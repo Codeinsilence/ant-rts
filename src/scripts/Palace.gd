@@ -9,9 +9,6 @@ func _ready():
 	if has_node("Spawning"): 
 		spawn = $Spawning
 
-	
-	
-	
 func _physics_process(delta):
 	pass
 	

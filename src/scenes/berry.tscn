@@ -26,10 +26,6 @@ visible = false
 shape = SubResource("ConvexPolygonShape3D_k11wk")
 disabled = true
 
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
-radius = 0.85
-
 [node name="CollisionBox" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_r2bsy")
 

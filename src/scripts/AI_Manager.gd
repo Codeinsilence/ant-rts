@@ -9,6 +9,8 @@ var nearby_harvestables := {"food": [],
 
 var time_since_harvestable_check:float = 0.0
 var time_since_idle_check:float = -1.0
+var attack_min_pop : int = 14
+var attack_cooldown : float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,6 +27,31 @@ func _physics_process(delta):
 	if time_since_idle_check > 1.0:
 		check_for_idles()
 		time_since_idle_check = 0.0
+	
+	attack_cooldown -= delta
+	if attack_cooldown <= 0.0:
+		if check_pop_for_attack():
+			launch_attack()
+			attack_cooldown = 60.0
+		else:
+			attack_cooldown = 5.0
+
+func check_pop_for_attack() -> bool:
+	var pop_count = 0
+	for unit in get_tree().get_nodes_in_group("enemy"):
+		if unit.has_node("Attack"):
+			pop_count += 1
+	
+	if pop_count >= attack_min_pop:
+		return true
+	return false
+	
+func launch_attack():
+	print("launching attack")
+	var player_palace_pos = Vector3(30.0, 15.5, 23.5)
+	for unit in get_tree().get_nodes_in_group("enemy"):
+		if unit.has_node("Attack") and randi() % 2 == 0:
+			unit.get_node("Attack").set_patrol_target(player_palace_pos)
 
 func check_nearby_harvestables():
 	# Loop over all harvestables
@@ -52,7 +79,9 @@ func check_for_idles():
 			var worker := unit as Worker
 			if worker.cur_action == "idle":
 				# Idle worker found -> make it gather a random resource
-				var rand_type = nearby_harvestables.keys()[randi_range(0, nearby_harvestables.keys().size()-1)]
-				var i : int = randi_range(0, nearby_harvestables[rand_type].size()-1)
+				var i : int = randi_range(0, nearby_harvestables.keys().size()-1)
+				if get_parent().food < 100: i = 0
+				var rand_type = nearby_harvestables.keys()[randi_range(0, i)]
+				i = randi_range(0, nearby_harvestables[rand_type].size()-1)
 				worker.get_node("Carrying").set_resource_target(nearby_harvestables[rand_type][i])
 				worker.get_node("Carrying").move_to_resource()

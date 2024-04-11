@@ -25,6 +25,3 @@ surface_material_override/0 = SubResource("ShaderMaterial_0jlsh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_kk6to")
-
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-radius = 0.6
