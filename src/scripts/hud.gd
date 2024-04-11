@@ -6,6 +6,7 @@ extends Control
 @onready var hud_food = status_bar.get_node("GridContainer/Food/HBoxContainer/Value")
 @onready var hud_protein = status_bar.get_node("GridContainer/Protein/HBoxContainer/Value")
 @onready var hud_foliage = status_bar.get_node("GridContainer/Foliage/HBoxContainer/Value")
+@onready var hud_capacity = status_bar.get_node("GridContainer/Capacity/HBoxContainer/Value")
 
 @onready var action_panel = get_node("ActionPanel")
 @onready var stat_panel = action_panel.get_node("GridContainer/UnitStats")
@@ -18,14 +19,19 @@ extends Control
 
 @onready var portrait_default = preload("res://assets/portraits/unknownPortrait.png")
 
-var colony = null
+@onready var inventory_container = get_node("ActionPanel/GridContainer/UnitActions/InventoryContainer")
+@onready var unit_food_val = inventory_container.get_node("Food/HBoxContainer/Value")
+@onready var unit_protein_val = inventory_container.get_node("Protein/HBoxContainer/Value")
+@onready var unit_foliage_val = inventory_container.get_node("Foliage/HBoxContainer/Value")
+
+var _colony = null
 
 func _ready():
 	action_panel.visible = false
 
 func _physics_process(delta):
 	pass
-	_update_status_bar(colony)
+	_update_status_bar(_colony)
 
 func _process(delta):
 	## Hide the panel unless a unit is selected
@@ -52,7 +58,16 @@ func _update_action_panel(unit: Unit):
 		hud_speed.text = "0"
 	hud_action.text = unit.cur_action
 	
-	#hud_portrait.texture = unit.portrait
+	# update for unit inventory
+	if(unit.has_node("Carrying")):
+		inventory_container.visible = true
+		var carrying_node = unit.get_node("Carrying")
+		var inventory = carrying_node.inventory
+		unit_food_val.text = str(inventory.food)
+		unit_protein_val.text = str(inventory.protein)
+		unit_foliage_val.text = str(inventory.foliage)
+	else:
+		inventory_container.visible = false
 	
 	if(unit.portrait != null):
 			hud_portrait.texture = unit.portrait
@@ -69,9 +84,10 @@ func _update_status_bar(colony):
 	hud_food.text = str(colony.food)
 	hud_protein.text = str(colony.protein)
 	hud_foliage.text = str(colony.foliage)
+	hud_capacity.text = str(colony.ants) + "/" + str(colony.houses * colony.capacity_per_house)
 
 func _on_player_colony_ready():
 	var player_units = get_tree().get_nodes_in_group("player")
 	for unit in player_units:
 		if(unit.name == "PlayerColony"):
-			colony = unit
+			_colony = unit
