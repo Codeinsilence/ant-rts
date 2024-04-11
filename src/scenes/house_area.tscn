@@ -1,6 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://kxnpk8gxncgi"]
+[gd_scene load_steps=8 format=3 uid="uid://kxnpk8gxncgi"]
 
+[ext_resource type="Shader" path="res://shaders/house_area.gdshader" id="2_75304"]
 [ext_resource type="ArrayMesh" uid="uid://b04vr24ro2wma" path="res://assets/models/ant_house.obj" id="2_gxce3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8sstw"]
+render_priority = 0
+shader = ExtResource("2_75304")
+shader_parameter/color = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xfbl5"]
+render_priority = 0
+shader = ExtResource("2_75304")
+shader_parameter/color = Color(1, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvaca"]
 resource_local_to_scene = true
@@ -23,6 +34,8 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 mesh = ExtResource("2_gxce3")
+surface_material_override/0 = SubResource("ShaderMaterial_8sstw")
+surface_material_override/1 = SubResource("ShaderMaterial_xfbl5")
 
 [node name="SelectionRing" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0.07, 0)
