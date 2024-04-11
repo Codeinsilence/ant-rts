@@ -14,6 +14,7 @@ func _on_spawn_time(colony):
 	for i in range(workers_per_interval):
 		if colony.pay_all(colony.cost_worker):
 			spawn_worker(colony)
+			colony.ants += 1
 
 func spawn_worker(colony):
 	var terrain = get_tree().get_root().get_node("/root/World/NavRegion/TerrainBody")

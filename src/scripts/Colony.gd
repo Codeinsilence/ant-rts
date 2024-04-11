@@ -106,7 +106,6 @@ func _handle_spawn_timer(delta):
 	for member in get_tree().get_nodes_in_group(group_name):
 		if member.has_node("Spawning"):
 			member.get_node("Spawning")._on_spawn_time(self)
-			ants += 1
 
 func _spawn_starting_house():
 	var terrain = $"../NavRegion/TerrainBody"
