@@ -69,17 +69,17 @@ func _take_damage(amt: float):
 		colony._single_ant_killed()
 		queue_free()
 
+# Override to apply team shaders
 func set_colony(col : Colony):
 	await super(col)
 	
-	
 	if(colony.team == "player"):
 		ant_mesh.material_overlay = player_material
-		#player_material.emission_energy_multiplier = 2.0
-		#player_material.emission = colony.team_color
+
 	if(colony.team == "enemy"):
 		ant_mesh.material_overlay = enemy_material
-		#enemy_material.emission = colony.team_color
+
+		
 # Connected to NavAgent's target_reached signal
 # Check my task and update accordingly
 func _on_target_reached():

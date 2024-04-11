@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhhfw2mybla5l"]
+[gd_scene load_steps=13 format=3 uid="uid://dhhfw2mybla5l"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_cwn8g"]
 [ext_resource type="Theme" uid="uid://drrq3u28ywljf" path="res://themes/infoPanel.tres" id="2_l1wnt"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cl8yvkxkgn7wu" path="res://assets/icons/icon_protein.png" id="5_21ghf"]
 [ext_resource type="Shader" path="res://shaders/portrait.gdshader" id="5_bjhen"]
 [ext_resource type="Texture2D" uid="uid://dy8nvtdbx8qa5" path="res://assets/icons/icon_foliage.png" id="6_bbu17"]
+[ext_resource type="Texture2D" uid="uid://dbltljho7i6ug" path="res://assets/icons/icon_house.png" id="7_5ecu2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqf4j"]
 bg_color = Color(0.486275, 0.231373, 0, 1)
@@ -117,14 +118,11 @@ theme = ExtResource("2_l1wnt")
 [node name="HBoxContainer" type="HBoxContainer" parent="StatusBar/GridContainer/Capacity"]
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="StatusBar/GridContainer/Capacity/HBoxContainer"]
-clip_contents = false
+[node name="TextureRect" type="TextureRect" parent="StatusBar/GridContainer/Capacity/HBoxContainer"]
 layout_mode = 2
-bbcode_enabled = true
-text = "[b]Capacity"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
+texture = ExtResource("7_5ecu2")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="Value" type="RichTextLabel" parent="StatusBar/GridContainer/Capacity/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
