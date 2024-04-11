@@ -1,6 +1,6 @@
 class_name House extends Unit
 
-@export var capacity: int = 10
+@export var capacity: int
 var radius: float = 3.0
 
 var house_mesh: MeshInstance3D

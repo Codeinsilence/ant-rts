@@ -46,10 +46,33 @@ func drag_and_drop():
 		if result:
 			_object_dragging.visible = true
 			_object_dragging.global_position = result.position
+			_color_checking(_object_dragging)
 			if Input.is_action_just_released("left_click"):
 				_checking_area(_object_dragging)
 		else:
 			_object_dragging.visible = false
+
+func _color_checking(obj: Node3D):
+	var colony = get_parent()
+	var available_food = false
+	var good_distance = false
+	var house_cost = colony.cost_house
+	#resource checking, red if insufficient resources and too far
+	if colony.food >= house_cost["food"] and colony.protein >= house_cost["protein"] and colony.foliage >= house_cost["foliage"]:
+		available_food = true
+	
+	if obj.position.distance_to(colony.position) <= _distance_from_palace:
+		good_distance = true
+		
+	var color = Vector4(1, 0, 0, 1)
+	if obj.has_overlapping_bodies():
+		var bodies = obj.get_overlapping_bodies()
+		if bodies.size() == 1 and bodies[0].name == "TerrainBody" and available_food and good_distance:
+			color = Vector4(0, 1, 0, 1);
+	var shader0 = obj.get_child(0).get_surface_override_material(0)
+	var shader1 = obj.get_child(0).get_surface_override_material(1)
+	shader0.set_shader_parameter("color", color)
+	shader1.set_shader_parameter("color", color)
 
 func _checking_area(obj: Node3D):
 	var colony = get_parent()
